@@ -34,15 +34,29 @@ const HeroSections = () => {
               <Image
                 src={heroContainerImage}
                 alt="AI Engine"
-                className="object-cover w-full h-full sm:w-[280px] sm:h-[280px] md:w-[350px] md:h-[350px] lg:w-[365px] lg:h-[365px] xl:w-[401px] xl:h-[401px]"
+                className="object-cover w-full h-full sm:w-[280px] sm:h-[280px] md:w-[350px] md:h-[350px] lg:w-[365px] lg:h-[365px] xl:w-[401px] xl:h-[401px] animate-spin"
                 sizes="(max-width: 768px) 280px, (max-width: 1024px) 350px, 401px"
                 width={401}
                 height={401}
+                style={{
+                  animation: "spin 10s linear infinite",
+                }}
               />
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
     </div>
   );
 };
