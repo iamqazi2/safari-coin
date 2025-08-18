@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Red_Hat_Display } from "next/font/google"; // Import Red_Hat_Display
 import "./globals.css";
+import Footer from "./components/footer";
 
 // Configure Red Hat Display
 const redHatDisplay = Red_Hat_Display({
@@ -26,6 +27,7 @@ export default function RootLayout({
         className={` ${redHatDisplay.variable} antialiased`} // Add redHatDisplay.variable
       >
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -5,7 +5,7 @@ import Image from "next/image";
 // Hero Section Component
 export const HeroSectionMain = () => {
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
+    <div className="relative min-h-screen px-2 bg-black overflow-hidden">
       <Navbar />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[20px] md:pt-[70px] ">

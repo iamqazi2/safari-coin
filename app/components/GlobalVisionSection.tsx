@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const GlobalVisionSection: React.FC = () => {
   return (
-    <section className="container px-4 mx-auto md:px-6">
+    <section className="container px-4 mx-auto pt-14 md:px-6">
       <div className="">
         {/* Main Container */}
         <div

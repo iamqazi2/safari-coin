@@ -1,8 +1,19 @@
-import { TechnologyCardProps } from "@/utils/models";
 import Image from "next/image";
 import React from "react";
 
-const TechnologyCard: React.FC<TechnologyCardProps> = (props) => {
+// Define the props interface for TechnologyCard
+interface TechnologyCardProps {
+  src: string;
+  title: string;
+  description: string;
+}
+
+// Use React.FC with the props interface
+const TechnologyCard: React.FC<TechnologyCardProps> = ({
+  src,
+  title,
+  description,
+}) => {
   return (
     <div
       className="backdrop-blur-xl h-[280px] md:h-[330px] lg:h-[380px] w-full max-w-[295px] mx-auto relative bg-black/30 rounded-[20px] md:rounded-[23px] lg:rounded-[26px] transition-all duration-300 p-2"
@@ -17,8 +28,8 @@ const TechnologyCard: React.FC<TechnologyCardProps> = (props) => {
         <div className="relative h-[230px] md:h-[270px] lg:h-[330px] w-full">
           <Image
             fill
-            src={props.src}
-            alt="AI Engine"
+            src={src}
+            alt={title}
             className="w-full h-full object-contain mx-auto"
           />
         </div>
@@ -30,10 +41,10 @@ const TechnologyCard: React.FC<TechnologyCardProps> = (props) => {
           }}
         >
           <h3 className="text-[12px] md:text-[13px] lg:text-[15px] font-bold text-white mb-1">
-            {props.title}
+            {title}
           </h3>
           <p className="text-white/90 text-[8px] md:text-[9px] lg:text-[10px] font-normal leading-relaxed">
-            {props.description}
+            {description}
           </p>
         </div>
       </div>

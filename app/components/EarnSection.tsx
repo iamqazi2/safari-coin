@@ -6,8 +6,8 @@ import {
   blackBackground,
   graidentBackground2,
 } from "@/utils/assets";
-import Icon from "./icon";
 import Image from "next/image";
+import Icon from "@/component/icon";
 
 const EarnSection: React.FC = () => {
   return (

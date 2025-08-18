@@ -1,6 +1,6 @@
 import React from "react";
-import Icon from "./icon";
 import { driveInnovation, buildSustainable, leadInWeb3 } from "@/utils/assets";
+import Icon from "@/component/icon";
 
 const UAEWeb3Section: React.FC = () => {
   return (

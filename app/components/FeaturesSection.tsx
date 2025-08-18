@@ -5,7 +5,7 @@ import {
   earnMore,
   participateInFuturistic,
 } from "@/utils/assets";
-import Icon from "./icon";
+import Icon from "@/component/icon";
 
 const FeaturesSection: React.FC = () => {
   return (

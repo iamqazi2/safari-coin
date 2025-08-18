@@ -1,6 +1,6 @@
 import React from "react";
-import Icon from "./icon";
 import { containerBlack } from "@/utils/assets";
+import Icon from "@/component/icon";
 
 const WhatWeDoSection = () => {
   return (

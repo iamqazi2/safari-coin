@@ -4,7 +4,7 @@ import { Navbar } from "./navbar";
 
 const HeroSectionBackground = () => {
   return (
-    <div className="relative w-full h-[70vh] ">
+    <div className="relative w-full h-[70vh] px-2 ">
       <Navbar />
       {/* Background Image */}
       <div

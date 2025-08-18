@@ -125,7 +125,7 @@ const TravelTokensSection = () => {
                       <div className="flex items-start">
                         <span className="w-3 h-3 bg-teal-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
                         <span>
-                          World's widest utility → every city, every service.
+                          World&apos;s widest utility → every city, every service.
                         </span>
                       </div>
                       <div className="flex text-[20px] items-start">
@@ -189,7 +189,7 @@ const TravelTokensSection = () => {
                       <div className="flex items-start">
                         <span className="w-3 h-3 bg-teal-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
                         <span>
-                          World's widest utility → every city, every service.
+                          World&apos;s widest utility → every city, every service.
                         </span>
                       </div>
                       <div className="flex text-[20px] items-start">

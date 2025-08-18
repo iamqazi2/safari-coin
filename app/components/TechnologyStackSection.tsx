@@ -1,12 +1,12 @@
 import React from "react";
 import dummyData from "@/utils/dummyData";
 import TechnologyCard from "./TechnologyCard";
-import Icon from "./icon";
 import {
   blackBackground,
   containerBlack,
   graidentBackground,
 } from "@/utils/assets";
+import Icon from "@/component/icon";
 
 const TechnologyStackSection = () => {
   return (

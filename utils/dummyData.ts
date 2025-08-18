@@ -17,7 +17,8 @@ export const dummyData: DummyData = {
     {
       icon: transportationAssistance,
       title: "Transportation Assistance",
-      description: "Access the most extensive inventory with competitive pricing.",
+      description:
+        "Access the most extensive inventory with competitive pricing.",
     },
     {
       icon: hotalStayManagement,
@@ -27,12 +28,14 @@ export const dummyData: DummyData = {
     {
       icon: smartItineraries,
       title: "Smart Itineraries",
-      description: "AI-generated, dynamic itineraries based on your preferences.",
+      description:
+        "AI-generated, dynamic itineraries based on your preferences.",
     },
     {
       icon: journeyTrackSafetyTools,
       title: "Journey Track & Safety Tools",
-      description: "Stay organized and safe with real-time tracking, reminders, and emergency tools.",
+      description:
+        "Stay organized and safe with real-time tracking, reminders, and emergency tools.",
     },
     {
       icon: visaAssistance,
@@ -55,7 +58,8 @@ export const dummyData: DummyData = {
     {
       src: web3Backbone,
       title: "Web3 Backbone:",
-      description: "Polygon blockchain, NFT smart contracts, and SED token integration",
+      description:
+        "Polygon blockchain, NFT smart contracts, and SED token integration",
     },
     {
       src: defiReadyWallet,

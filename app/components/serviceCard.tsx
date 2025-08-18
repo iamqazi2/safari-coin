@@ -1,6 +1,6 @@
+import Icon from "@/component/icon";
 import { ServiceCardProps } from "@/utils/models";
 import React from "react";
-import Icon from "./icon";
 
 const ServiceCard: React.FC<ServiceCardProps> = (props) => {
   return (

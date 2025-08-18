@@ -1,8 +1,8 @@
 import dummyData from "@/utils/dummyData";
 import React from "react";
 import ServiceCard from "./serviceCard";
-import Icon from "./icon";
 import { stars } from "@/utils/assets";
+import Icon from "@/component/icon";
 
 const ServiceSection: React.FC = () => {
   return (
@@ -26,7 +26,7 @@ const ServiceSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto pb-18 px-4 md:px-6">
         <div className="grid justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {dummyData.serviceCardData.map((card, index) => (
             <ServiceCard key={index} {...card} />

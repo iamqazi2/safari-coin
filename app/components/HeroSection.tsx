@@ -5,7 +5,7 @@ import { Navbar } from "./navbar";
 
 const HeroSections = () => {
   return (
-    <div className="bg-black max-xl:px-8 pb-6 md:pb-10 text-white">
+    <div className="bg-black max-xl:px-2 pb-6 md:pb-10 text-white">
       <Navbar />
 
       <div className="container mx-auto py-6 md:py-10 px-4 md:px-6">

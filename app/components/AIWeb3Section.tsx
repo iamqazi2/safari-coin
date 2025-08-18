@@ -1,6 +1,6 @@
 import React from "react";
-import Icon from "./icon";
 import { containerBlack } from "@/utils/assets";
+import Icon from "@/component/icon";
 
 const AIWeb3Section: React.FC = () => {
   return (
@@ -16,8 +16,8 @@ const AIWeb3Section: React.FC = () => {
               Powered by AI, Enhanced by Web3
             </h2>
             <p className="text-[16px] md:text-[18px] lg:text-xl xl:text-2xl font-normal text-white text-opacity-90 max-w-4xl mx-auto leading-relaxed">
-              SafariQ isn&apos;t just another travel platform, it&apos;s a next-Generation
-              travel ecosystem.
+              SafariQ isn&apos;t just another travel platform, it&apos;s a
+              next-Generation travel ecosystem.
             </p>
           </div>
 
