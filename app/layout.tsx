@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Red_Hat_Display } from "next/font/google"; // Import Red_Hat_Display
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Configure Red Hat Display
+const redHatDisplay = Red_Hat_Display({
+  variable: "--font-red-hat-display", // Define CSS variable
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "700"], // Specify desired weights
+  style: ["normal", "italic"], // Optional: include italic if needed
 });
 
 export const metadata: Metadata = {
@@ -25,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={` ${redHatDisplay.variable} antialiased`} // Add redHatDisplay.variable
       >
         {children}
       </body>
