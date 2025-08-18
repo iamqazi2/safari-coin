@@ -100,6 +100,14 @@ const TravelTokensSection = () => {
       id="web3"
       className="min-h-screen py-14 bg-black text-white relative"
     >
+      {" "}
+      <Image
+        src={"/utility-texture.svg"}
+        alt="card image"
+        width={500}
+        height={60}
+        className="absolute z-100 w-full -top-3 lg:-top-9  "
+      />
       <Image
         src={"/glow.svg"}
         alt="card image"
@@ -117,7 +125,6 @@ const TravelTokensSection = () => {
       <h1 className="text-[20px] md:text-[48px] pb-12 md:pb-28 text-white leading-tight text-center mx-auto font-[400] max-w-[750px]">
         Own Your Travel, With SED Tokens, NFTs, and Real Utility
       </h1>
-
       {/* 💻 Desktop / Tablet Version with animation */}
       <div className="hidden xl:flex items-start justify-center gap-[20px] px-8 lg:px-16 h-fit max-w-[1240px] mx-auto relative">
         {/* Steps Left Side */}
@@ -168,7 +175,6 @@ const TravelTokensSection = () => {
           </AnimatePresence>
         </div>
       </div>
-
       {/* 📱 Mobile Version (no animation, natural flow) */}
       <div className="flex flex-col gap-8 px-6 xl:hidden">
         {cardData.map((card, index) => (
