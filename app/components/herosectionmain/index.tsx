@@ -1,11 +1,15 @@
 import React from "react";
 import { Navbar } from "../navbar";
 import Image from "next/image";
+import Lines from "../heroanimation";
+import Starfield from "../heroanimation/starfield";
 
 // Hero Section Component
 export const HeroSectionMain = () => {
   return (
     <div className="relative min-h-screen px-2 bg-black overflow-hidden">
+      <Starfield />
+      <Lines />
       <Navbar />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[20px] md:pt-[70px] ">
@@ -24,13 +28,13 @@ export const HeroSectionMain = () => {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center mt-[24px]">
-            <button className="w-full sm:w-auto border-1 hover:bg-[#00A8C5] border-[#00A8C5] text-white px-[30px] py-4 rounded-full font-semibold text-lg transition-all duration-300 ">
+            <button className="w-full sm:w-auto border-1 hover:bg-[#00A8C5] border-[#00A8C5]  bg-black text-white px-[30px] py-4 rounded-full font-semibold text-lg transition-all duration-300 ">
               Join the Journey
             </button>
-            <button className="w-full sm:w-auto border-1 hover:bg-[#00A8C5] border-[#00A8C5] text-white px-[30px] py-4 rounded-full font-semibold text-lg transition-all duration-300 ">
+            <a href={"/how-it-works"} className="w-full sm:w-auto border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[30px] py-4 rounded-full font-semibold text-lg transition-all duration-300 ">
               How SafariQ Works
-            </button>
-            <button className="w-full sm:w-auto border-1 hover:bg-[#00A8C5] border-[#00A8C5] text-white px-[30px] py-4 rounded-full font-semibold text-lg transition-all duration-300 ">
+            </a>
+            <button className="w-full sm:w-auto border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[30px] py-4 rounded-full font-semibold text-lg transition-all duration-300 ">
               White Paper
             </button>
           </div>

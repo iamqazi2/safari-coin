@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         {/* Navigation Links */}
-        <div className="flex flex-row md:flex-row justify-center lg:justify-start items-center lg:items-start gap-8 lg:gap-12 w-full lg:w-auto">
+        <div className="flex relative z-0 flex-row md:flex-row justify-center lg:justify-start items-center lg:items-start gap-8 lg:gap-12 w-full lg:w-auto">
           {/* Company Links */}
           <div className="flex flex-col justify-center items-center lg:items-start min-w-[100px] gap-4 lg:gap-6">
             <p className="text-base font-medium">Company</p>

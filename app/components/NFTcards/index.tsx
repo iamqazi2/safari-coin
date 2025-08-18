@@ -125,13 +125,13 @@ const NFTCardsSlider: React.FC = () => {
               >
                 <div className="relative p-3 sm:p-4 rounded-2xl sm:rounded-3xl border backdrop-blur-sm h-full flex flex-col bg-[#1A1B235E] border-[#D3D3D357] shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 w-full">
                   <div className="relative mb-6 sm:mb-8 flex justify-center flex-1">
-                    <div className="relative mx-auto w-full max-w-[230px] md:max-w-[320px]">
+                    <div className="relative mx-auto w-full max-w-[230px] md:max-w-[430px]">
                       <Image
                         src={card.image}
                         alt={card.name}
                         width={100}
                         height={100}
-                        className="w-full h-full object-contain rounded-xl shadow-2xl"
+                        className="w-full h-full object-cover rounded-xl shadow-2xl"
                       />
                     </div>
                   </div>

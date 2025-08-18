@@ -26,3 +26,17 @@ body {
   color: var(--foreground);
   font-family: var(--font-red-hat-display), Arial, Helvetica, sans-serif; /* Use Red Hat Display as primary font */
 }
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) translateX(5px);
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle infinite ease-in-out alternate;
+}

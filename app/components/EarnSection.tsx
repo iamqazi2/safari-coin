@@ -1,7 +1,6 @@
 import React from "react";
 import {
   tick,
-  safariCoin,
   containerBlack,
   blackBackground,
   graidentBackground2,
@@ -191,7 +190,7 @@ const EarnSection: React.FC = () => {
           <Image
             height={10}
             width={10}
-            src={safariCoin}
+            src={"/hd.svg"}
             alt="SafariQ E-Dirham Coin"
             className="w-full h-full object-contain drop-shadow-2xl"
           />

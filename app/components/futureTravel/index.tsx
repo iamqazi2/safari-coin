@@ -204,7 +204,8 @@ const SafariQTravelSection: React.FC = () => {
   return (
     <div
       ref={sectionRef}
-      className="relative h-screen bg-gradient-to-b from-gray-50 to-white md:bg-transparent overflow-visible"
+      id="ecosystem"
+      className="relative h-screen bg-white overflow-visible"
     >
       <div className="flex justify-center items-center mt-[50px] md:mt-[30px] w-full">
         <Image
@@ -232,8 +233,8 @@ const SafariQTravelSection: React.FC = () => {
             POWERED BY PATENT-READY AI + WEB3
           </p>
           <p className="text-[14px] md:text-[24px] text-black font-normal leading-normal max-w-3xl mx-auto">
-            SafariQ bridges all major travel services into one intelligent,
-            reward-based platform.
+             SafariQ aims to bridge all major travel services into one
+            intelligent, reward-based platform.
           </p>
         </div>
 

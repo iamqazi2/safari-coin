@@ -2,31 +2,49 @@
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 
 // Navbar Component
 export const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const navItems = [
     { name: "About Us", href: "/about-us" },
-    { name: "Ecosystem", href: "/ecosystem" },
-    { name: "Web3", href: "/" },
-    { name: "Roadmap", href: "/" },
-    { name: "Community", href: "/" },
+    { name: "Ecosystem", href: "#ecosystem" },
+    { name: "Web3", href: "#web3" },
+    { name: "Roadmap", href: "#roadmap" },
+    { name: "Community", href: "#community" },
   ];
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      if (pathname === "/") {
+        // Already on home → just scroll
+        const id = href.replace("#", "");
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // Not on home → go to home with hash
+        router.push(`/${href}`);
+      }
+      setIsDrawerOpen(false);
+    }
+  };
+
   return (
     <>
       <nav className="relative overflow-hidden z-50 max-w-[1240px] mx-auto mt-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/30">
-        <div className=" px-4">
+        <div className="px-4">
           <div className="flex justify-between items-center  h-16 md:h-[66px]">
             <Link href={"/"}>
-              {" "}
               <Image
                 className="absolute left-0 top-0 "
                 src={"/nav-blur.svg"}
@@ -34,7 +52,6 @@ export const Navbar = () => {
                 width={240}
                 alt="logo"
               />
-              {/* Logo */}
               <div className="flex-shrink-0 relative z-10">
                 <Image src={"/logo.svg"} height={56} width={110} alt="logo" />
               </div>
@@ -42,15 +59,26 @@ export const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              {navItems.map((item, index) => (
-                <a
-                  key={index}
-                  href={item.href}
-                  className="text-white text-4 hover:text-white transition-colors duration-300 font-medium"
-                >
-                  {item.name}
-                </a>
-              ))}
+              {navItems.map((item, index) =>
+                item.href.startsWith("#") ? (
+                  <a
+                    key={index}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className="text-white text-4 hover:text-white transition-colors duration-300 font-medium"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={index}
+                    href={item.href}
+                    className="text-white text-4 hover:text-white transition-colors duration-300 font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                )
+              )}
             </div>
 
             {/* Sign In Button (Desktop) */}
@@ -81,7 +109,7 @@ export const Navbar = () => {
       >
         {/* Backdrop */}
         <div
-          className={`fixed inset-0 bg-black  transition-opacity duration-300 ease-in-out ${
+          className={`fixed inset-0 bg-black transition-opacity duration-300 ease-in-out ${
             isDrawerOpen ? "opacity-70" : "bg-opacity-0"
           }`}
           onClick={toggleDrawer}
@@ -96,7 +124,6 @@ export const Navbar = () => {
           <div className="flex items-center justify-between p-4 ">
             <div className="flex items-center space-x-2">
               <Link href={"/"}>
-                {" "}
                 <Image
                   className="absolute left-0 bottom-0 top-0 "
                   src={"/nav-blur.svg"}
@@ -104,7 +131,6 @@ export const Navbar = () => {
                   width={240}
                   alt="logo"
                 />
-                {/* Logo */}
                 <div className="flex-shrink-0 relative z-10">
                   <Image src={"/logo.svg"} height={56} width={110} alt="logo" />
                 </div>
@@ -119,16 +145,26 @@ export const Navbar = () => {
           </div>
 
           <div className="px-4 py-6 space-y-6">
-            {navItems.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                className="block text-gray-300 hover:text-white transition-colors duration-300 font-medium text-lg"
-                onClick={toggleDrawer}
-              >
-                {item.name}
-              </a>
-            ))}
+            {navItems.map((item, index) =>
+              item.href.startsWith("#") ? (
+                <a
+                  key={index}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="block text-gray-300 hover:text-white transition-colors duration-300 font-medium text-lg"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={index}
+                  href={item.href}
+                  className="block text-gray-300 hover:text-white transition-colors duration-300 font-medium text-lg"
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
 
             <button className="w-full bg-[#4CD9ED] text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 mt-8">
               Sign In

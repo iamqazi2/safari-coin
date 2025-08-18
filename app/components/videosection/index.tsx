@@ -61,7 +61,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className={`relative  rounded-lg overflow-hidden ${className}`}>
+    <div id="community" className={`relative  rounded-lg overflow-hidden ${className}`}>
       {/* Video Element */}
       <video
         ref={videoRef}
