@@ -51,8 +51,9 @@ const NFTCardsSlider: React.FC = () => {
       id: 4,
       name: "Cyber Brick",
       price: "Standard Price 5$",
-      description: "Limited Supply, will be minted randomly for Lucky Minters.",
-      reward: "$550 SafariQ Travel voucher + Standard utility.",
+      description: "Only 10 Grails will be minted randomly for Lucky Minters.",
+      reward:
+        "$10,000 Exclusive Buy-Back offer + SafariQ Metaverse + Standard utility..",
       image: "/green.svg",
       type: "CYBER",
     },
@@ -60,8 +61,8 @@ const NFTCardsSlider: React.FC = () => {
       id: 5,
       name: "Quantum Brick",
       price: "Standard Price 5$",
-      description: "Limited Supply, will be minted randomly.",
-      reward: "$55 Travel voucher + Standard utility.",
+      description: "Limited Supply, will be minted randomly for Lucky Minters.",
+      reward: "$550 SafariQ Travel voucher + Standard utility.",
       image: "/yellow.svg",
       type: "QUANTUM",
     },
@@ -150,7 +151,7 @@ const NFTCardsSlider: React.FC = () => {
                       background: "rgba(0, 0, 0, 0.3)",
                       backdropFilter: "blur(6px)",
                     }}
-                    className=" h-auto min-h-[140px] md:min-h-[180px] lg:min-h-[200px] right-2 left-2 sm:right-3 sm:left-3 lg:right-4 lg:left-4 border border-white/20 backdrop-blur-sm bottom-3 sm:bottom-4 lg:bottom-6"
+                    className=" h-auto min-h-[140px] md:min-h-[180px] lg:min-h-[160px] right-2 left-2 sm:right-3 sm:left-3 lg:right-4 lg:left-4 border border-white/20 backdrop-blur-sm bottom-3 sm:bottom-4 lg:bottom-6"
                   >
                     <div className="p-3 sm:p-4 lg:p-5">
                       <div className="flex justify-between items-center mb-2">

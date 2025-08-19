@@ -1,17 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import HeroSectionBackground from "../components/HeroSectionBackground";
-import SafariQVisionSection from "../components/SafariQVisionSection";
-import WhoWeAreSection from "../components/WhoWeAreSection";
-import WhatWeDoSection from "../components/WhatWeDoSection";
-import WhatMakesDifferentSection from "../components/WhatMakesDifferentSection";
-import UAEWeb3Section from "../components/UAEWeb3Section";
-import TechnologyStackSection from "../components/TechnologyStackSection";
-import EcosystemValuesSection from "../components/EcosystemValuesSection";
-import JoinMovementSection from "../components/JoinMovementSection";
+import { useEffect, useState } from "react";
+import AIWeb3Section from "../components/AIWeb3Section";
+import EarnSection from "../components/EarnSection";
+import FeaturesSection from "../components/FeaturesSection";
+import GlobalVisionSection from "../components/GlobalVisionSection";
+import HeroSections from "../components/HeroSection";
+import NFTCollectionSection from "../components/NFTCollectionSection";
+import ReadyToBeginSection from "../components/ReadyToBeginSection";
+import ServiceSection from "../components/ServiceSection";
 import LoadingScreen from "../components/loader";
 
-const EcoSystemPage = () => {
+const AboutUsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,19 +26,19 @@ const EcoSystemPage = () => {
         <LoadingScreen />
       ) : (
         <>
-          <HeroSectionBackground />
-          <SafariQVisionSection />
-          <WhoWeAreSection />
-          <WhatWeDoSection />
-          <WhatMakesDifferentSection />
-          <UAEWeb3Section />
-          <TechnologyStackSection />
-          <EcosystemValuesSection />
-          <JoinMovementSection />
+          {" "}
+          <HeroSections />
+          <ServiceSection />
+          <AIWeb3Section />
+          <NFTCollectionSection />
+          <EarnSection />
+          <GlobalVisionSection />
+          <FeaturesSection />
+          <ReadyToBeginSection />
         </>
       )}
     </div>
   );
 };
 
-export default EcoSystemPage;
+export default AboutUsPage;

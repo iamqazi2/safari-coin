@@ -1,16 +1,17 @@
 "use client";
-import { useEffect, useState } from "react";
-import AIWeb3Section from "../components/AIWeb3Section";
-import EarnSection from "../components/EarnSection";
-import FeaturesSection from "../components/FeaturesSection";
-import GlobalVisionSection from "../components/GlobalVisionSection";
-import HeroSections from "../components/HeroSection";
-import NFTCollectionSection from "../components/NFTCollectionSection";
-import ReadyToBeginSection from "../components/ReadyToBeginSection";
-import ServiceSection from "../components/ServiceSection";
+import React, { useEffect, useState } from "react";
+import HeroSectionBackground from "../components/HeroSectionBackground";
+import SafariQVisionSection from "../components/SafariQVisionSection";
+import WhoWeAreSection from "../components/WhoWeAreSection";
+import WhatWeDoSection from "../components/WhatWeDoSection";
+import WhatMakesDifferentSection from "../components/WhatMakesDifferentSection";
+import UAEWeb3Section from "../components/UAEWeb3Section";
+import TechnologyStackSection from "../components/TechnologyStackSection";
+import EcosystemValuesSection from "../components/EcosystemValuesSection";
+import JoinMovementSection from "../components/JoinMovementSection";
 import LoadingScreen from "../components/loader";
 
-const AboutUsPage = () => {
+const EcoSystemPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -26,19 +27,19 @@ const AboutUsPage = () => {
         <LoadingScreen />
       ) : (
         <>
-          {" "}
-          <HeroSections />
-          <ServiceSection />
-          <AIWeb3Section />
-          <NFTCollectionSection />
-          <EarnSection />
-          <GlobalVisionSection />
-          <FeaturesSection />
-          <ReadyToBeginSection />
+          <HeroSectionBackground />
+          <SafariQVisionSection />
+          <WhoWeAreSection />
+          <WhatWeDoSection />
+          <WhatMakesDifferentSection />
+          <UAEWeb3Section />
+          <TechnologyStackSection />
+          <EcosystemValuesSection />
+          <JoinMovementSection />
         </>
       )}
     </div>
   );
 };
 
-export default AboutUsPage;
+export default EcoSystemPage;

@@ -174,21 +174,21 @@ const SafariQTravelSection: React.FC = () => {
     }
 
     if (!isMobile) {
-      // Desktop: Pinning and stacked card transitions
+      // Desktop: Pinning and card scroll animations - FASTER AND SHORTER
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: "+=800%",
+        end: "+=150%", // Reduced from 300% to 150% for much less scroll
         pin: true,
-        scrub: 0.5,
+        scrub: 0.1, // Reduced from 0.3 to 0.1 for much faster animation
         onUpdate: (self) => {
           const progress = self.progress;
-          const cardIndex = Math.floor(progress * 16);
+          const cardIndex = Math.floor(progress * 12); // Reduced from 8 to 12 for even faster progression
           setCurrentCardIndex(cardIndex);
         },
       });
 
-      // Initialize first cards to be visible
+      // Initialize to show first cards - changed from 1 to 0 to ensure first cards are visible
       setCurrentCardIndex(0);
     }
 
@@ -233,7 +233,7 @@ const SafariQTravelSection: React.FC = () => {
             POWERED BY PATENT-READY AI + WEB3
           </p>
           <p className="text-[14px] md:text-[24px] text-black font-normal leading-normal max-w-3xl mx-auto">
-             SafariQ aims to bridge all major travel services into one
+            SafariQ aims to bridge all major travel services into one
             intelligent, reward-based platform.
           </p>
         </div>
@@ -475,47 +475,97 @@ const SafariQTravelSection: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-8">
-            <div ref={cardsLeftRef} className="relative">
+          <div className="grid grid-cols-2 gap-16 max-w-6xl mx-auto">
+            <div
+              ref={cardsLeftRef}
+              className="relative h-[400px] overflow-hidden"
+            >
               {leftCards.map((card, index) => {
-                const currentLeftIndex = Math.floor(currentCardIndex / 2) % 8;
-                const isActive = currentLeftIndex === index;
-                const isFirstCard = index === 0;
+                // Modified animation logic to show first card initially
+                const scrollProgress = Math.min(
+                  1,
+                  Math.max(0, currentCardIndex / 12) // Changed from 16 to 12 for faster progression
+                );
+                const pairIndex = Math.floor(index); // Which pair this card belongs to (0,1,2,3...)
+                const cardTrigger = pairIndex * 0.08; // Reduced from 0.125 to 0.08 for faster intervals
+
+                // Modified to ensure first card (index 0) is always visible
+                let cardProgress;
+                if (index === 0) {
+                  // First card starts visible and can be animated out
+                  cardProgress =
+                    scrollProgress === 0
+                      ? 1
+                      : Math.max(
+                          0,
+                          Math.min(1, (scrollProgress - cardTrigger) * 12)
+                        );
+                } else {
+                  // Other cards animate in as before
+                  cardProgress = Math.max(
+                    0,
+                    Math.min(1, (scrollProgress - cardTrigger) * 12)
+                  );
+                }
+
+                // Stacking animation
+                const basePosition = 350; // Start position (further below)
+                const stackOffset = index * 8; // Tighter stacking - 8px per card
+                const finalPosition = stackOffset; // Stack upward from base
+
+                // Modified translateY calculation for first card
+                let translateY;
+                if (index === 0) {
+                  // First card starts at final position
+                  translateY =
+                    scrollProgress === 0
+                      ? finalPosition
+                      : basePosition -
+                        cardProgress * (basePosition - finalPosition);
+                } else {
+                  translateY =
+                    basePosition -
+                    cardProgress * (basePosition - finalPosition);
+                }
+
+                // Enhanced visual effects
+                const zIndex = 50 + index; // Higher base z-index
+
+                // Modified opacity calculation for first card
+                let opacity;
+                if (index === 0) {
+                  // First card is always visible initially
+                  opacity =
+                    scrollProgress === 0 ? 1 : Math.min(1, cardProgress * 3);
+                } else {
+                  opacity = Math.min(1, cardProgress * 3); // Faster fade in
+                }
+
+                const scale = 0.95 + cardProgress * 0.05; // Subtle scale effect
+
                 return (
                   <div
                     key={card.id}
-                    className={`service-card absolute top-0 left-0 w-full bg-[url('/card-bg.svg')] bg-contain bg-no-repeat rounded-2xl h-[240px] ${
-                      isActive || (currentCardIndex === 0 && isFirstCard)
-                        ? "opacity-100 z-10"
-                        : "opacity-0 z-0"
-                    }`}
+                    className="service-card absolute top-0 left-0 w-full bg-[url('/card-bg.svg')] bg-contain bg-no-repeat rounded-2xl h-[200px] "
                     style={{
-                      transition:
-                        "all 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.5s ease-in-out",
-                      transitionDelay: isActive ? "0.2s" : "0s",
-                      transform:
-                        isActive || (currentCardIndex === 0 && isFirstCard)
-                          ? "translateZ(0) scale(1) rotateY(0deg)"
-                          : `translateZ(0) scale(0.92) rotateY(${
-                              index > currentLeftIndex ? "5deg" : "-5deg"
-                            }) translateY(${(index - currentLeftIndex) * 8}px)`,
-                      filter: isActive
-                        ? "blur(0px) brightness(1)"
-                        : "blur(1px) brightness(0.8)",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", // Reduced from 0.6s to 0.3s for faster transitions
+                      transform: `translateY(${translateY}px) scale(${scale})`,
+                      zIndex: zIndex,
+                      opacity: opacity,
                     }}
                   >
-                    <div className="flex items-center py-6 px-4 space-x-4">
-                      <div className="rounded-xl p-3 text-white text-2xl flex-shrink-0">
+                    <div className="flex items-center md:pt-4 lg:pt-0 md:pb-0 lg:pb-12 px-6 space-x-4 h-fit lg:h-full">
+                      <div className="rounded-xl p-2 flex-shrink-0">
                         <Image
                           src={card.image}
                           alt="icons"
-                          height={90}
-                          className="w-[30px] h-[30px] md:w-[50px] md:h-[50px] lg:w-[90px] lg:h-[90px] "
-                          width={90}
+                          height={60}
+                          width={60}
+                          className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
                         />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-[10px] md:text-[16px] lg:text-[38px] font-normal text-gray-900 mb-2">
+                        <h3 className="text-[14px] md:text-[18px] lg:text-[28px] font-medium text-gray-900 leading-tight">
                           {card.title}
                         </h3>
                       </div>
@@ -524,48 +574,96 @@ const SafariQTravelSection: React.FC = () => {
                 );
               })}
             </div>
-            <div ref={cardsRightRef} className="relative h-full">
+            <div
+              ref={cardsRightRef}
+              className="relative h-[400px] overflow-hidden"
+            >
               {rightCards.map((card, index) => {
-                const currentRightIndex = Math.floor(currentCardIndex / 2) % 8;
-                const isActive = currentRightIndex === index;
-                const isFirstCard = index === 0;
+                // Modified identical synchronized animation logic for right side
+                const scrollProgress = Math.min(
+                  1,
+                  Math.max(0, currentCardIndex / 12) // Changed from 16 to 12 for faster progression
+                );
+                const pairIndex = Math.floor(index); // Which pair this card belongs to (0,1,2,3...)
+                const cardTrigger = pairIndex * 0.08; // Reduced from 0.125 to 0.08 for faster intervals
+
+                // Modified to ensure first card (index 0) is always visible
+                let cardProgress;
+                if (index === 0) {
+                  // First card starts visible and can be animated out
+                  cardProgress =
+                    scrollProgress === 0
+                      ? 1
+                      : Math.max(
+                          0,
+                          Math.min(1, (scrollProgress - cardTrigger) * 12)
+                        );
+                } else {
+                  // Other cards animate in as before
+                  cardProgress = Math.max(
+                    0,
+                    Math.min(1, (scrollProgress - cardTrigger) * 12)
+                  );
+                }
+
+                // Stacking animation
+                const basePosition = 350; // Start position (further below)
+                const stackOffset = index * 8; // Tighter stacking - 8px per card
+                const finalPosition = stackOffset; // Stack upward from base
+
+                // Modified translateY calculation for first card
+                let translateY;
+                if (index === 0) {
+                  // First card starts at final position
+                  translateY =
+                    scrollProgress === 0
+                      ? finalPosition
+                      : basePosition -
+                        cardProgress * (basePosition - finalPosition);
+                } else {
+                  translateY =
+                    basePosition -
+                    cardProgress * (basePosition - finalPosition);
+                }
+
+                // Enhanced visual effects
+                const zIndex = 50 + index; // Higher base z-index
+
+                // Modified opacity calculation for first card
+                let opacity;
+                if (index === 0) {
+                  // First card is always visible initially
+                  opacity =
+                    scrollProgress === 0 ? 1 : Math.min(1, cardProgress * 3);
+                } else {
+                  opacity = Math.min(1, cardProgress * 3); // Faster fade in
+                }
+
+                const scale = 0.95 + cardProgress * 0.05; // Subtle scale effect
+
                 return (
                   <div
                     key={card.id}
-                    className={`service-card absolute top-0 left-0 w-full bg-[url('/card-bg.svg')] bg-contain bg-no-repeat rounded-2xl h-[240px] ${
-                      isActive || (currentCardIndex === 0 && isFirstCard)
-                        ? "opacity-100 z-10"
-                        : "opacity-0 z-0"
-                    }`}
+                    className="service-card absolute  top-0 left-0 w-full bg-[url('/card-bg.svg')] bg-contain bg-no-repeat rounded-2xl h-[200px]"
                     style={{
-                      transition:
-                        "all 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.5s ease-in-out",
-                      transitionDelay: isActive ? "0.2s" : "0s",
-                      transform:
-                        isActive || (currentCardIndex === 0 && isFirstCard)
-                          ? "translateZ(0) scale(1) rotateY(0deg)"
-                          : `translateZ(0) scale(0.92) rotateY(${
-                              index > currentRightIndex ? "-5deg" : "5deg"
-                            }) translateY(${
-                              (index - currentRightIndex) * 8
-                            }px)`,
-                      filter: isActive
-                        ? "blur(0px) brightness(1)"
-                        : "blur(1px) brightness(0.8)",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", // Reduced from 0.6s to 0.3s for faster transitions
+                      transform: `translateY(${translateY}px) scale(${scale})`,
+                      zIndex: zIndex,
+                      opacity: opacity,
                     }}
                   >
-                    <div className="flex items-center py-6 px-4 space-x-4">
-                      <div className="rounded-xl p-3 text-white text-2xl flex-shrink-0">
+                    <div className="flex items-center md:pt-4 lg:pt-0 md:pb-0 lg:pb-12 px-6 space-x-4 h-fit lg:h-full">
+                      <div className="rounded-xl p-2 flex-shrink-0">
                         <Image
                           src={card.image}
                           alt="icons"
-                          height={90}
-                          className="w-[30px] h-[30px] md:w-[50px] md:h-[50px] lg:w-[90px] lg:h-[90px] "
-                          width={90}
+                          height={60}
+                          width={60}
+                          className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
                         />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-[10px] md:text-[16px] lg:text-[38px] font-normal text-gray-900 mb-2">
+                        <h3 className="text-[14px] md:text-[18px] lg:text-[28px] font-medium text-gray-900 leading-tight">
                           {card.title}
                         </h3>
                       </div>

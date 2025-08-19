@@ -3,11 +3,12 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Navbar Component
 export const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -18,6 +19,17 @@ export const Navbar = () => {
     { name: "Roadmap", href: "#roadmap" },
     { name: "Community", href: "#community" },
   ];
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -41,15 +53,35 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="relative overflow-hidden z-50 max-w-[1240px] mx-auto mt-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/30">
+      <nav
+        className={`fixed top-0 left-1/2 transform -translate-x-1/2 overflow-hidden z-50 max-w-[1240px] w-full mx-auto mt-6 rounded-full border border-white/30 transition-all duration-300 ${
+          isScrolled
+            ? "bg-black/90 backdrop-blur-sm"
+            : "bg-white/10 backdrop-blur-sm"
+        }`}
+      >
         <div className="px-4">
           <div className="flex justify-between items-center  h-16 md:h-[66px]">
             <Link href={"/"}>
               <Image
-                className="absolute left-0 top-0 "
+                className="absolute -left-30 top-0 "
                 src={"/nav-blur.svg"}
                 height={200}
-                width={240}
+                width={440}
+                alt="logo"
+              />
+              <Image
+                className="absolute -left-30 top-0 "
+                src={"/nav-blur.svg"}
+                height={200}
+                width={440}
+                alt="logo"
+              />{" "}
+              <Image
+                className="absolute -left-30 top-0 "
+                src={"/nav-blur.svg"}
+                height={200}
+                width={440}
                 alt="logo"
               />
               <div className="flex-shrink-0 relative z-10">
