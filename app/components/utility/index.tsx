@@ -73,7 +73,7 @@ const TravelTokensSection = () => {
       prelaunch: "Signup + referrals.",
       postlaunch: "Travel cashback.",
       points: [
-        "World’s widest utility → every city, every service.",
+        "World's widest utility → every city, every service.",
         "Imagine: Travellers Currency without borders & conversions.",
       ],
       image: "/coins.svg",
@@ -165,7 +165,7 @@ const TravelTokensSection = () => {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="relative w-[1046px] h-[560px] z-10 bg-[url('/new-blur.png')] bg-cover bg-no-repeat"
                   >
                     <CardContent {...card} />

@@ -7,6 +7,7 @@ interface NFTCard {
   name: string;
   price: string;
   description: string;
+  reward: string;
   image: string;
   type: "GENESIS" | "NEON" | "META" | "CYBER" | "QUANTUM";
 }
@@ -15,54 +16,61 @@ const NFTCardsSlider: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [cardWidth, setCardWidth] = useState(400);
-  const [gap, setGap] = useState(24); // <--- store gap in state instead of calling window
+  const [gap, setGap] = useState(24);
 
   const cards: NFTCard[] = [
     {
       id: 1,
       name: "Genesis Brick",
-      price: "0.1249 ETH",
-      description: "Lorem ipsum dolor sit amet consectetur...",
+      price: "Standard Price 5$",
+      description: "Only 10 Grails will be minted randomly for Lucky Minters.",
+      reward:
+        "$10,000 Exclusive Buy-Back offer + SafariQ Metaverse + Standard utility.",
       image: "/green.svg",
       type: "GENESIS",
     },
     {
       id: 2,
       name: "Neon Brick",
-      price: "0.1249 ETH",
-      description: "Lorem ipsum dolor sit amet consectetur...",
+      price: "Standard Price 5$",
+      description: "Limited Supply, will be minted randomly for Lucky Minters.",
+      reward: "$550 SafariQ Travel voucher + Standard utility.",
       image: "/yellow.svg",
       type: "NEON",
     },
     {
       id: 3,
       name: "Meta Brick",
-      price: "0.1249 ETH",
-      description: "Lorem ipsum dolor sit amet consectetur...",
+      price: "Standard Price 5$",
+      description: "Limited Supply, will be minted randomly.",
+      reward: "$55 Travel voucher + Standard utility.",
       image: "/blue.svg",
       type: "META",
     },
     {
       id: 4,
       name: "Cyber Brick",
-      price: "0.1249 ETH",
-      description: "Lorem ipsum dolor sit amet consectetur...",
+      price: "Standard Price 5$",
+      description: "Limited Supply, will be minted randomly for Lucky Minters.",
+      reward: "$550 SafariQ Travel voucher + Standard utility.",
       image: "/green.svg",
       type: "CYBER",
     },
     {
       id: 5,
       name: "Quantum Brick",
-      price: "0.1249 ETH",
-      description: "Lorem ipsum dolor sit amet consectetur...",
+      price: "Standard Price 5$",
+      description: "Limited Supply, will be minted randomly.",
+      reward: "$55 Travel voucher + Standard utility.",
       image: "/yellow.svg",
       type: "QUANTUM",
     },
     {
       id: 6,
       name: "Quantum Brick",
-      price: "0.1249 ETH",
-      description: "Lorem ipsum dolor sit amet consectetur...",
+      price: "Standard Price 5$",
+      description: "Limited Supply, will be minted randomly.",
+      reward: "$55 Travel voucher + Standard utility.",
       image: "/blue.svg",
       type: "QUANTUM",
     },
@@ -72,20 +80,20 @@ const NFTCardsSlider: React.FC = () => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
         setSlidesPerView(1);
-        setCardWidth(window.innerWidth - 48); // Account for padding
+        setCardWidth(window.innerWidth - 48);
         setGap(16);
       } else if (window.innerWidth < 1024) {
         setSlidesPerView(2);
-        setCardWidth((window.innerWidth - 72) / 2); // Account for gap and padding
+        setCardWidth((window.innerWidth - 72) / 2);
         setGap(24);
       } else {
         setSlidesPerView(3);
-        setCardWidth((window.innerWidth - 96) / 3); // Account for gap and padding
+        setCardWidth((window.innerWidth - 96) / 3);
         setGap(24);
       }
     };
 
-    handleResize(); // run once on mount
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -120,7 +128,7 @@ const NFTCardsSlider: React.FC = () => {
             {cards.map((card) => (
               <div
                 key={card.id}
-                className="flex-shrink-0 flex justify-center items-center h-[400px] md:h-[500px] lg:h-[550px] relative"
+                className="flex-shrink-0 flex justify-center items-center relative"
                 style={{ width: `${cardWidth}px` }}
               >
                 <div className="relative p-3 sm:p-4 rounded-2xl sm:rounded-3xl border backdrop-blur-sm h-full flex flex-col bg-[#1A1B235E] border-[#D3D3D357] shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 w-full">
@@ -139,23 +147,31 @@ const NFTCardsSlider: React.FC = () => {
                   <div
                     style={{
                       borderRadius: "18px",
-                      background: "rgba(0, 0, 0, 0.1)",
+                      background: "rgba(0, 0, 0, 0.3)",
                       backdropFilter: "blur(6px)",
                     }}
-                    className="absolute h-[100px] md:h-[160px] lg:h-[170px] right-2 left-2 sm:right-3 sm:left-3 lg:right-4 lg:left-4 border border-white/20 backdrop-blur-sm bg-black/10 bottom-3 sm:bottom-4 lg:bottom-6"
+                    className=" h-auto min-h-[140px] md:min-h-[180px] lg:min-h-[200px] right-2 left-2 sm:right-3 sm:left-3 lg:right-4 lg:left-4 border border-white/20 backdrop-blur-sm bottom-3 sm:bottom-4 lg:bottom-6"
                   >
-                    <div className="p-2 sm:p-3 lg:p-4">
+                    <div className="p-3 sm:p-4 lg:p-5">
                       <div className="flex justify-between items-center mb-2">
-                        <h3 className="text-base sm:text-lg lg:text-[22px] font-bold text-white truncate">
+                        <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white truncate">
                           {card.name}
                         </h3>
-                        <p className="text-sm sm:text-base lg:text-[22px] font-bold ml-2 flex-shrink-0">
+                        <p className="text-xs sm:text-sm lg:text-base font-bold ml-2 flex-shrink-0 text-white">
                           {card.price}
                         </p>
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-[14px] text-gray-300 line-clamp-3 md:!line-clamp-5 ">
+                      <p className="text-xs sm:text-sm text-gray-300 mb-3 leading-relaxed">
                         {card.description}
                       </p>
+                      <div className="border-t border-white/20 pt-2">
+                        <p className="text-xs font-semibold text-white mb-1">
+                          Reward:
+                        </p>
+                        <p className="text-xs text-gray-300 leading-relaxed">
+                          {card.reward}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
