@@ -151,28 +151,6 @@ const TravelSignupSection: React.FC = () => {
                       </div>
                     )}
                   </div>
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Enter your password"
-                      value={formData.email}
-                      onChange={(e) =>
-                        handleInputChange("password", e.target.value)
-                      }
-                      className="w-full px-6 py-4 bg-transparent border border-white/20 rounded-full text-white placeholder-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Re-enter your password"
-                      value={formData.email}
-                      onChange={(e) =>
-                        handleInputChange("password", e.target.value)
-                      }
-                      className="w-full px-6 py-4 bg-transparent border border-white/20 rounded-full text-white placeholder-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200"
-                    />
-                  </div>
 
                   {/* Submit Button */}
                   <button

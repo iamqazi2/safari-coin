@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 
 interface NFTCard {
@@ -17,6 +17,13 @@ const NFTCardsSlider: React.FC = () => {
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [cardWidth, setCardWidth] = useState(400);
   const [gap, setGap] = useState(24);
+
+  // Drag functionality state
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [currentX, setCurrentX] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   const cards: NFTCard[] = [
     {
@@ -49,33 +56,91 @@ const NFTCardsSlider: React.FC = () => {
     },
     {
       id: 4,
-      name: "Cyber Brick",
+      name: "Quantum AZ Edition",
       price: "Standard Price 5$",
-      description: "Only 10 Grails will be minted randomly for Lucky Minters.",
-      reward:
-        "$10,000 Exclusive Buy-Back offer + SafariQ Metaverse + Standard utility..",
-      image: "/green.svg",
+      description:
+        "Founder's Signature AZ as Brick attribute, Limited Supply, will be minted randomly.",
+      reward: "155 SED tokens + Standard utility.",
+      image: "/purples.svg",
       type: "CYBER",
     },
     {
       id: 5,
       name: "Quantum Brick",
       price: "Standard Price 5$",
-      description: "Limited Supply, will be minted randomly for Lucky Minters.",
-      reward: "$550 SafariQ Travel voucher + Standard utility.",
-      image: "/yellow.svg",
-      type: "QUANTUM",
-    },
-    {
-      id: 6,
-      name: "Quantum Brick",
-      price: "Standard Price 5$",
       description: "Limited Supply, will be minted randomly.",
-      reward: "$55 Travel voucher + Standard utility.",
-      image: "/blue.svg",
+      reward: "$55 SED Tokens + Standard utility.",
+      image: "/purples.svg",
       type: "QUANTUM",
     },
   ];
+
+  const maxSlide = Math.max(0, cards.length - slidesPerView);
+
+  // Memoize drag event handlers
+  const handleDragStart = useCallback((clientX: number) => {
+    setIsDragging(true);
+    setStartX(clientX);
+    setCurrentX(clientX);
+  }, []);
+
+  const handleDragMove = useCallback(
+    (clientX: number) => {
+      if (!isDragging) return;
+
+      const deltaX = clientX - startX;
+      setCurrentX(clientX);
+      setDragOffset(deltaX);
+    },
+    [isDragging, startX]
+  );
+
+  const handleDragEnd = useCallback(() => {
+    if (!isDragging) return;
+
+    const deltaX = currentX - startX;
+    const threshold = 50; // Minimum drag distance to trigger slide change
+
+    if (Math.abs(deltaX) > threshold) {
+      if (deltaX > 0 && currentSlide > 0) {
+        // Dragged right, go to previous slide
+        setCurrentSlide(currentSlide - 1);
+      } else if (deltaX < 0 && currentSlide < maxSlide) {
+        // Dragged left, go to next slide
+        setCurrentSlide(currentSlide + 1);
+      }
+    }
+
+    setIsDragging(false);
+    setDragOffset(0);
+  }, [isDragging, currentX, startX, currentSlide, maxSlide]);
+
+  // Mouse events
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    handleDragStart(e.clientX);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    handleDragMove(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    handleDragEnd();
+  };
+
+  // Touch events
+  const handleTouchStart = (e: React.TouchEvent) => {
+    handleDragStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    handleDragMove(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    handleDragEnd();
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -99,15 +164,37 @@ const NFTCardsSlider: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Auto-slide functionality
+  // Auto-slide functionality - pause when dragging
   useEffect(() => {
-    const maxSlide = Math.max(0, cards.length - slidesPerView);
+    if (isDragging) return; // Don't auto-slide while dragging
+
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1));
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [cards.length, slidesPerView]);
+  }, [maxSlide, isDragging]);
+
+  // Add global mouse event listeners when dragging
+  useEffect(() => {
+    if (isDragging) {
+      const handleGlobalMouseMove = (e: MouseEvent) => {
+        handleDragMove(e.clientX);
+      };
+
+      const handleGlobalMouseUp = () => {
+        handleDragEnd();
+      };
+
+      document.addEventListener("mousemove", handleGlobalMouseMove);
+      document.addEventListener("mouseup", handleGlobalMouseUp);
+
+      return () => {
+        document.removeEventListener("mousemove", handleGlobalMouseMove);
+        document.removeEventListener("mouseup", handleGlobalMouseUp);
+      };
+    }
+  }, [isDragging, handleDragMove, handleDragEnd]);
 
   return (
     <div className="w-full bg-black mx-auto py-8 relative overflow-hidden px-6">
@@ -121,10 +208,22 @@ const NFTCardsSlider: React.FC = () => {
         {/* Cards Container */}
         <div className="overflow-visible">
           <div
-            className="flex transition-transform duration-1000 ease-in-out gap-4 sm:gap-6"
+            ref={sliderRef}
+            className={`flex transition-transform gap-4 sm:gap-6 select-none ${
+              isDragging ? "duration-0" : "duration-1000 ease-in-out"
+            }`}
             style={{
-              transform: `translateX(-${currentSlide * (cardWidth + gap)}px)`,
+              transform: `translateX(-${
+                currentSlide * (cardWidth + gap) - dragOffset
+              }px)`,
+              cursor: isDragging ? "grabbing" : "grab",
             }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={isDragging ? handleMouseMove : undefined}
+            onMouseUp={handleMouseUp}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             {cards.map((card) => (
               <div
@@ -141,6 +240,7 @@ const NFTCardsSlider: React.FC = () => {
                         width={100}
                         height={100}
                         className="w-full h-full object-cover rounded-xl shadow-2xl"
+                        draggable={false}
                       />
                     </div>
                   </div>

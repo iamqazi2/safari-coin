@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 // Navbar Component
 export const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [lastScrollY, setLastScrollY] = useState<number>(0);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -20,16 +22,27 @@ export const Navbar = () => {
     { name: "Community", href: "#community" },
   ];
 
-  // Handle scroll effect
+  // Handle scroll effect for hide/show navbar
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
+      const currentScrollY = window.scrollY;
+
+      // Set scrolled state for background color
+      setIsScrolled(currentScrollY > 50);
+
+      // Show navbar when scrolling up, hide when scrolling down
+      if (currentScrollY < lastScrollY || currentScrollY <= 50) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -54,11 +67,9 @@ export const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-1/2 transform -translate-x-1/2 overflow-hidden z-50 max-w-[1240px] w-full mx-auto mt-6 rounded-full border border-white/30 transition-all duration-300 ${
-          isScrolled
-            ? "bg-black/90 backdrop-blur-sm"
-            : "bg-white/10 backdrop-blur-sm"
-        }`}
+        className={`fixed top-0 left-1/2 transform -translate-x-1/2 overflow-hidden z-50 max-w-[1240px] w-full mx-auto mt-6 rounded-full border border-white/30 backdrop-blur-sm transition-all duration-500 ease-in-out ${
+          isVisible ? "translate-y-0" : "-translate-y-full opacity-0"
+        } ${isScrolled ? "bg-black/40" : "bg-white/10"}`}
       >
         <div className="px-4">
           <div className="flex justify-between items-center  h-16 md:h-[66px]">
@@ -124,7 +135,7 @@ export const Navbar = () => {
             <div className="lg:hidden">
               <button
                 onClick={toggleDrawer}
-                className="text-gray-400 hover:text-white p-2"
+                className="text-white hover:text-white p-2"
               >
                 <Menu className="h-6 w-6" />
               </button>

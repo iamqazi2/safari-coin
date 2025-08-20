@@ -45,88 +45,36 @@ const SafariQTravelSection: React.FC = () => {
     { name: "int14", image: "/int14.svg", color: "text-gray-500" },
   ];
 
-  // 16 service cards data
+  // 20 service cards data sorted to match the screenshot order
   const serviceCards: ServiceCard[] = [
-    {
-      id: 2,
-      title: "FX Currency Exchange",
-      image: "/currency-exchange.svg",
-    },
-    {
-      id: 3,
-      title: "All-in-One Bookings",
-      image: "/bookings.svg",
-    },
-    {
-      id: 4,
-      title: "Duty Free Shops",
-      image: "/duty.svg",
-    },
-    {
-      id: 5,
-      title: "Visa Assistance",
-      image: "/visa.svg",
-    },
+    { id: 1, title: "Next-GEN Journey Planner", image: "/gen.svg" },
+    { id: 2, title: "Visa Assistance", image: "/visa.svg" },
+    { id: 3, title: "Travel Vault", image: "/travel.svg" },
+    { id: 4, title: "All in One Wallet", image: "/wallet.svg" },
+    { id: 5, title: "Real-time Advisory", image: "/real-time.svg" },
     {
       id: 6,
-      title: "Global connectivity with Free eSIMs",
-      image: "/sim.svg",
-    },
-    {
-      id: 7,
-      title: "Travel Vault",
-      image: "/travel.svg",
-    },
-    {
-      id: 8,
-      title: "Smart AI Assistant",
-      image: "/ai-assistant.svg",
-    },
-    {
-      id: 9,
-      title: "All in One Wallet",
-      image: "/wallet.svg",
-    },
-    {
-      id: 10,
-      title: "Personalized Travel Alerts",
-      image: "/travel-alerts.svg",
-    },
-    {
-      id: 11,
-      title: "AR Story Routes",
-      image: "/ar-story.svg",
-    },
-    {
-      id: 12,
-      title: "NFT Souvenirs",
-      image: "/NFT.svg",
-    },
-    {
-      id: 13,
-      title: "Emergency Assistance",
-      image: "/emergency.svg",
-    },
-    {
-      id: 14,
-      title: "SME Portal",
-      image: "/SME.svg",
-    },
-    {
-      id: 15,
-      title: "Smart Flight Booking",
-      image: "/bookings.svg",
-    },
-    {
-      id: 16,
-      title: "Next-GEN Journey Planner",
-      image: "/gen.svg",
-    },
-    {
-      id: 1,
       title: "AI-powered Personalised Suggestions",
       image: "/suggestion.svg",
     },
+    { id: 7, title: "Smart AI Assistant", image: "/ai-assistant.svg" },
+    {
+      id: 8,
+      title: "Personalized Travel Alerts",
+      image: "/travel-alerts.svg",
+    },
+    { id: 9, title: "Emergency Assistance", image: "/emergency.svg" },
+    { id: 10, title: "Earn as you Go..!", image: "/earn.svg" },
+    { id: 11, title: "All-in-One Bookings", image: "/bookings.svg" },
+    { id: 12, title: "FX Currency Exchange", image: "/currency-exchange.svg" },
+    { id: 13, title: "Duty Free Shops", image: "/duty.svg" },
+    { id: 14, title: "Travel Marketplace", image: "/suggestion.svg" },
+    { id: 15, title: "SME Portal", image: "/SME.svg" },
+    { id: 16, title: "Unique Reseller Program", image: "/unique.svg" },
+    { id: 17, title: "Global connectivity with Free eSIMs", image: "/sim.svg" },
+    { id: 18, title: "SafariQ Metaverse", image: "/meta.svg" },
+    { id: 19, title: "NFT Souvenirs", image: "/NFT.svg" },
+    { id: 20, title: "AR Story Routes", image: "/ar-story.svg" },
   ];
 
   useEffect(() => {
@@ -183,7 +131,7 @@ const SafariQTravelSection: React.FC = () => {
         scrub: 0.1, // Reduced from 0.3 to 0.1 for much faster animation
         onUpdate: (self) => {
           const progress = self.progress;
-          const cardIndex = Math.floor(progress * 12); // Reduced from 8 to 12 for even faster progression
+          const cardIndex = Math.floor(progress * 20); // Updated to 20 for 20 cards
           setCurrentCardIndex(cardIndex);
         },
       });
@@ -198,8 +146,8 @@ const SafariQTravelSection: React.FC = () => {
     };
   }, [isMobile, integrationPartners.length]); // Add integrationPartners.length to the dependency array
 
-  const leftCards = serviceCards.slice(0, 8);
-  const rightCards = serviceCards.slice(8, 16);
+  const leftCards = serviceCards.slice(0, 10);
+  const rightCards = serviceCards.slice(10, 20);
 
   return (
     <div
@@ -403,7 +351,6 @@ const SafariQTravelSection: React.FC = () => {
                       }}
                     />
                     {/* Middle layer - 20px smaller (10px on each side) */}
-
                     <div
                       className="absolute top-5 w-[calc(100%-20px)] h-[calc(100%-7px)]"
                       style={{
@@ -484,10 +431,10 @@ const SafariQTravelSection: React.FC = () => {
                 // Modified animation logic to show first card initially
                 const scrollProgress = Math.min(
                   1,
-                  Math.max(0, currentCardIndex / 12) // Changed from 16 to 12 for faster progression
+                  Math.max(0, currentCardIndex / 20) // Updated to 20 for 20 cards
                 );
                 const pairIndex = Math.floor(index); // Which pair this card belongs to (0,1,2,3...)
-                const cardTrigger = pairIndex * 0.08; // Reduced from 0.125 to 0.08 for faster intervals
+                const cardTrigger = pairIndex * 0.05; // Adjusted for 20 cards (0.05 per card)
 
                 // Modified to ensure first card (index 0) is always visible
                 let cardProgress;
@@ -498,13 +445,13 @@ const SafariQTravelSection: React.FC = () => {
                       ? 1
                       : Math.max(
                           0,
-                          Math.min(1, (scrollProgress - cardTrigger) * 12)
+                          Math.min(1, (scrollProgress - cardTrigger) * 20)
                         );
                 } else {
                   // Other cards animate in as before
                   cardProgress = Math.max(
                     0,
-                    Math.min(1, (scrollProgress - cardTrigger) * 12)
+                    Math.min(1, (scrollProgress - cardTrigger) * 20)
                   );
                 }
 
@@ -546,28 +493,38 @@ const SafariQTravelSection: React.FC = () => {
                 return (
                   <div
                     key={card.id}
-                    className="service-card absolute top-0 left-0 w-full bg-[url('/card-bg.svg')] bg-contain bg-no-repeat rounded-2xl h-[200px] "
+                    className="service-card absolute top-0 left-0 w-full bg-gradient-to-r from-white to-gray-50 border border-gray-200  rounded-[28px] backdrop-blur-sm"
                     style={{
-                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", // Reduced from 0.6s to 0.3s for faster transitions
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                       transform: `translateY(${translateY}px) scale(${scale})`,
                       zIndex: zIndex,
                       opacity: opacity,
+                      background:
+                        "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
+                      border: "1px solid rgba(148, 163, 184, 0.3)",
                     }}
                   >
-                    <div className="flex items-center md:pt-4 lg:pt-0 md:pb-0 lg:pb-12 px-6 space-x-4 h-fit lg:h-full">
-                      <div className="rounded-xl p-2 flex-shrink-0">
-                        <Image
-                          src={card.image}
-                          alt="icons"
-                          height={60}
-                          width={60}
-                          className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-[14px] md:text-[18px] lg:text-[28px] font-medium text-gray-900 leading-tight">
-                          {card.title}
-                        </h3>
+                    <div className="flex items-center justify-center h-full px-6 py-8">
+                      <div className="flex items-center space-x-4 w-full">
+                        {/* Icon Container with enhanced styling */}
+                        <div className="flex-shrink-0 flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-xl flex items-center justify-center">
+                            <Image
+                              src={card.image}
+                              alt="service icon"
+                              height={32}
+                              width={32}
+                              className="w-18 h-18 object-contain "
+                            />
+                          </div>
+                        </div>
+
+                        {/* Text content with better typography */}
+                        <div className="flex-1">
+                          <h3 className="text-[18px] md:text-[22px] lg:text-[28px] font-[500] text-gray-800 leading-tight">
+                            {card.title}
+                          </h3>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -582,10 +539,10 @@ const SafariQTravelSection: React.FC = () => {
                 // Modified identical synchronized animation logic for right side
                 const scrollProgress = Math.min(
                   1,
-                  Math.max(0, currentCardIndex / 12) // Changed from 16 to 12 for faster progression
+                  Math.max(0, currentCardIndex / 20) // Updated to 20 for 20 cards
                 );
                 const pairIndex = Math.floor(index); // Which pair this card belongs to (0,1,2,3...)
-                const cardTrigger = pairIndex * 0.08; // Reduced from 0.125 to 0.08 for faster intervals
+                const cardTrigger = pairIndex * 0.05; // Adjusted for 20 cards (0.05 per card)
 
                 // Modified to ensure first card (index 0) is always visible
                 let cardProgress;
@@ -596,13 +553,13 @@ const SafariQTravelSection: React.FC = () => {
                       ? 1
                       : Math.max(
                           0,
-                          Math.min(1, (scrollProgress - cardTrigger) * 12)
+                          Math.min(1, (scrollProgress - cardTrigger) * 20)
                         );
                 } else {
                   // Other cards animate in as before
                   cardProgress = Math.max(
                     0,
-                    Math.min(1, (scrollProgress - cardTrigger) * 12)
+                    Math.min(1, (scrollProgress - cardTrigger) * 20)
                   );
                 }
 
@@ -644,28 +601,38 @@ const SafariQTravelSection: React.FC = () => {
                 return (
                   <div
                     key={card.id}
-                    className="service-card absolute  top-0 left-0 w-full bg-[url('/card-bg.svg')] bg-contain bg-no-repeat rounded-2xl h-[200px]"
+                    className="service-card absolute top-0 left-0 w-full bg-gradient-to-r from-white to-gray-50 border border-gray-200 rounded-[28px] backdrop-blur-sm"
                     style={{
-                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", // Reduced from 0.6s to 0.3s for faster transitions
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                       transform: `translateY(${translateY}px) scale(${scale})`,
                       zIndex: zIndex,
                       opacity: opacity,
+                      background:
+                        "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
+                      border: "1px solid rgba(148, 163, 184, 0.3)",
                     }}
                   >
-                    <div className="flex items-center md:pt-4 lg:pt-0 md:pb-0 lg:pb-12 px-6 space-x-4 h-fit lg:h-full">
-                      <div className="rounded-xl p-2 flex-shrink-0">
-                        <Image
-                          src={card.image}
-                          alt="icons"
-                          height={60}
-                          width={60}
-                          className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-[14px] md:text-[18px] lg:text-[28px] font-medium text-gray-900 leading-tight">
-                          {card.title}
-                        </h3>
+                    <div className="flex items-center justify-center h-full px-6 py-8">
+                      <div className="flex items-center space-x-4 w-full">
+                        {/* Icon Container with enhanced styling */}
+                        <div className="flex-shrink-0 flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-xl flex items-center justify-center">
+                            <Image
+                              src={card.image}
+                              alt="service icon"
+                              height={32}
+                              width={32}
+                              className="w-18 h-18 object-contain "
+                            />
+                          </div>
+                        </div>
+
+                        {/* Text content with better typography */}
+                        <div className="flex-1">
+                          <h3 className="text-[18px] md:text-[22px] lg:text-[28px] font-[500] text-gray-800 leading-tight">
+                            {card.title}
+                          </h3>
+                        </div>
                       </div>
                     </div>
                   </div>
