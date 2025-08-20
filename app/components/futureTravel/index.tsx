@@ -153,7 +153,7 @@ const SafariQTravelSection: React.FC = () => {
     // Banner sliding animation
     const bannerAnimation = gsap.to(bannerRef.current, {
       x: -totalWidth / 2, // Move by half the total width to show all banners
-      duration: 20,
+      duration: 50,
       ease: "none",
       repeat: -1, // Infinite loop
       onStart: () => {
@@ -205,7 +205,7 @@ const SafariQTravelSection: React.FC = () => {
     <div
       ref={sectionRef}
       id="ecosystem"
-      className="relative h-screen bg-white overflow-visible"
+      className="relative mb-0 md:mb-[50px] min-h-screen bg-white overflow-visible"
     >
       <div className="flex justify-center items-center mt-[50px] md:mt-[30px] w-full">
         <Image

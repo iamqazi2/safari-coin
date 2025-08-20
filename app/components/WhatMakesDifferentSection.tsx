@@ -27,7 +27,7 @@ const WhatMakesDifferentSection = () => {
             </h3>
             <p className="text-black leading-relaxed text-[16px] md:text-[18px] lg:text-xl xl:text-2xl">
               Expiry free Rewards with our native token, the SafariQ E Dirham
-              (SED), for bookings, referrals, and engagement.
+              (SED), for bookings, referrals, and engagements.
             </p>
           </div>
 

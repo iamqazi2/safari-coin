@@ -31,10 +31,7 @@ const TravelTokensSection = () => {
         "Created for Rewards, AED Pegged SED, with Built-in Moon Engine..",
       prelaunch: "Signup + referrals.",
       postlaunch: "Travel cashback.",
-      points: [
-        "World's widest utility → every city, every service.",
-        "Imagine: Travellers Currency without borders & conversions.",
-      ],
+      points: ["World's widest utility → every city, every service."],
       image: "/coins.svg",
       buttons: [
         { text: "Mint NFT", primary: false },
@@ -49,7 +46,7 @@ const TravelTokensSection = () => {
       postlaunch: "Highest utility value ever.",
       points: ["Live Minting counter 1326 / 100,000, Layer 1"],
       image: "/second-card.svg", // 👈 replace with your actual image path
-      buttons: [{ text: "Mint NFT", primary: true }],
+      buttons: [{ text: "Get Prelaunch Bonus", primary: true }],
     },
   ];
 

@@ -15,7 +15,7 @@ const AIWeb3Section: React.FC = () => {
             <h2 className="text-[28px] md:text-[36px] lg:text-4xl xl:text-5xl font-normal text-white mb-4 md:mb-5 lg:mb-6">
               Powered by AI, Enhanced by Web3
             </h2>
-            <p className="text-[16px] md:text-[18px] lg:text-xl xl:text-2xl font-normal text-white text-opacity-90 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-[16px] md:text-[18px] lg:text-xl xl:text-2xl font-normal text-white text-opacity-90 max-w-xl mx-auto leading-relaxed">
               SafariQ isn&apos;t just another travel platform, it&apos;s a
               next-Generation travel ecosystem.
             </p>

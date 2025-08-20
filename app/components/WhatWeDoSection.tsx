@@ -19,7 +19,7 @@ const WhatWeDoSection = () => {
             <h2 className="text-[28px] md:text-[36px] lg:text-4xl xl:text-5xl font-normal text-white mb-4 md:mb-5 lg:mb-6">
               What We Do
             </h2>
-            <p className="text-[16px] md:text-[18px] lg:text-xl xl:text-2xl font-normal text-white text-opacity-90 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-[16px] md:text-[18px] lg:text-xl xl:text-2xl font-normal text-white text-opacity-90 max-w-xl mx-auto leading-relaxed">
               SafariQ combines smart travel tools with earning opportunities in
               one seamless ecosystem
             </p>
@@ -35,10 +35,10 @@ const WhatWeDoSection = () => {
               }}
             >
               <div
-                className="rounded-xl md:rounded-2xl mb-1 p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
-                  border: "1px solid #4CD9ED",
+                  border: ".5px solid #4CD9ED",
                 }}
               >
                 <h3 className="text-[16px] md:text-[18px] lg:text-xl xl:text-[28px] font-bold text-white mb-2 md:mb-2.5 lg:mb-3">
@@ -50,17 +50,13 @@ const WhatWeDoSection = () => {
               </div>
             </div>
 
-            <div
-              className="rounded-xl md:rounded-2xl"
-              style={{
-                boxShadow: "0px 2px 0px 0px #00A8C5",
-              }}
-            >
+            <div className="rounded-xl md:rounded-2xl" style={{}}>
               <div
-                className="rounded-xl md:rounded-2xl mb-1 p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
-                  border: "1px solid #4CD9ED",
+                  border: ".5px solid #4CD9ED",
+                  boxShadow: "0px 2px 0px 0px #00A8C5",
                 }}
               >
                 <h3 className="text-[16px] md:text-[18px] lg:text-xl xl:text-[28px] font-bold text-white mb-2 md:mb-2.5 lg:mb-3">
@@ -73,17 +69,13 @@ const WhatWeDoSection = () => {
             </div>
 
             {/* Row 2 */}
-            <div
-              className="rounded-xl md:rounded-2xl"
-              style={{
-                boxShadow: "0px 2px 0px 0px #00A8C5",
-              }}
-            >
+            <div className="rounded-xl md:rounded-2xl" style={{}}>
               <div
-                className="rounded-xl md:rounded-2xl mb-1 p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
-                  border: "1px solid #4CD9ED",
+                  border: ".5px solid #4CD9ED",
+                  boxShadow: "0px 2px 0px 0px #00A8C5",
                 }}
               >
                 <h3 className="text-[16px] md:text-[18px] lg:text-xl xl:text-[28px] font-bold text-white mb-2 md:mb-2.5 lg:mb-3">
@@ -102,10 +94,10 @@ const WhatWeDoSection = () => {
               }}
             >
               <div
-                className="rounded-xl md:rounded-2xl mb-1 p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
-                  border: "1px solid #4CD9ED",
+                  border: ".5px solid #4CD9ED",
                 }}
               >
                 <h3 className="text-[16px] md:text-[18px] lg:text-xl xl:text-[28px] font-bold text-white mb-2 md:mb-2.5 lg:mb-3">
@@ -125,10 +117,10 @@ const WhatWeDoSection = () => {
               }}
             >
               <div
-                className="rounded-xl md:rounded-2xl mb-1 p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
-                  border: "1px solid #4CD9ED",
+                  border: ".5px solid #4CD9ED",
                 }}
               >
                 <h3 className="text-[16px] md:text-[18px] lg:text-xl xl:text-[28px] font-bold text-white mb-2 md:mb-2.5 lg:mb-3">
@@ -147,10 +139,10 @@ const WhatWeDoSection = () => {
               }}
             >
               <div
-                className="rounded-xl md:rounded-2xl mb-1 p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
-                  border: "1px solid #4CD9ED",
+                  border: ".5px solid #4CD9ED",
                 }}
               >
                 <h3 className="text-[16px] md:text-[18px] lg:text-xl xl:text-[28px] font-bold text-white mb-2 md:mb-2.5 lg:mb-3">

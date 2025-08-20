@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { ChevronDown, QrCode } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 
 // Country data for dropdown
@@ -28,7 +28,6 @@ const TravelSignupSection: React.FC = () => {
   });
 
   const [isCountryOpen, setIsCountryOpen] = useState(false);
-  const [isReferralOpen, setIsReferralOpen] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({
@@ -152,54 +151,27 @@ const TravelSignupSection: React.FC = () => {
                       </div>
                     )}
                   </div>
-
-                  {/* Wallet Address Input */}
-                  <div className="relative">
+                  <div>
                     <input
                       type="text"
-                      placeholder="Enter wallet address"
-                      value={formData.walletAddress}
+                      placeholder="Enter your password"
+                      value={formData.email}
                       onChange={(e) =>
-                        handleInputChange("walletAddress", e.target.value)
+                        handleInputChange("password", e.target.value)
                       }
-                      className="w-full px-6 py-4 pr-14 bg-transparent border border-white/20 rounded-full text-white placeholder-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200"
+                      className="w-full px-6 py-4 bg-transparent border border-white/20 rounded-full text-white placeholder-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200"
                     />
-                    <button
-                      type="button"
-                      className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-[#3EB9CF] transition-colors duration-200"
-                    >
-                      <QrCode className="w-5 h-5" />
-                    </button>
                   </div>
-
-                  {/* Referral Code Dropdown */}
-                  <div className="relative">
-                    <button
-                      type="button"
-                      onClick={() => setIsReferralOpen(!isReferralOpen)}
-                      className="w-full px-6 py-4 bg-transparent border border-white/20 rounded-full text-left text-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200 flex items-center justify-between"
-                    >
-                      <span>Enter referral code (optional)</span>
-                      <ChevronDown
-                        className={`w-5 h-5 text-white/70 transition-transform duration-200 ${
-                          isReferralOpen ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-
-                    {isReferralOpen && (
-                      <div className="absolute top-full left-0 right-0 mt-2">
-                        <input
-                          type="text"
-                          placeholder="Referral code"
-                          value={formData.referralCode}
-                          onChange={(e) =>
-                            handleInputChange("referralCode", e.target.value)
-                          }
-                          className="w-full px-6 py-4 bg-black border border-white/20 rounded-full text-white placeholder-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200"
-                        />
-                      </div>
-                    )}
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Re-enter your password"
+                      value={formData.email}
+                      onChange={(e) =>
+                        handleInputChange("password", e.target.value)
+                      }
+                      className="w-full px-6 py-4 bg-transparent border border-white/20 rounded-full text-white placeholder-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200"
+                    />
                   </div>
 
                   {/* Submit Button */}
