@@ -12,7 +12,7 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 // Hero Section Component
 export const HeroSectionMain = () => {
   return (
-    <div className="relative min-h-screen px-2 bg-black overflow-hidden">
+    <div className="relative h-screen px-2 bg-black overflow-hidden">
       <Image
         src={"/bg.png"}
         width={1920}
@@ -29,7 +29,7 @@ export const HeroSectionMain = () => {
       <Lines />
       <Navbar />
 
-      <div className="relative z-10 max-w-7xl mx-auto  px-4 sm:px-6 lg:px-8 pt-[100px] md:pt-[140px] ">
+      <div className="relative z-10 max-w-7xl mx-auto  px-4 sm:px-6 lg:px-8 pt-[100px] lg:pt-[120px] ">
         <div className="text-center">
           {/* Main Heading */}
           <h1 className=" text-[28px] md:text-[40px] max-w-[888px] mx-auto font-[400] text-white leading-normal mb-4 ">
@@ -60,14 +60,14 @@ export const HeroSectionMain = () => {
           </div>
 
           {/* Lottie Animation with Centered Circle SVG */}
-          <div className="w-full relative py-6 h-[300px] md:h-[420px]">
+          <div className="w-full relative py-0 md:py-6 h-[300px] md:h-[420px]">
             {/* Centered Circle SVG - Responsive across all screen sizes */}
             <Image
               src={"/CoinAnim.gif"}
               width={150}
               height={150}
               alt="network image"
-              className="absolute top-[58%] left-[48.6%] lg:top-[55%] lg:left-[49.1%] md:top-[55%] md:left-[48.5%] transform -translate-x-1/2  -translate-y-1/2 z-10 w-[75px] h-[75px]  md:w-[140px] md:h-[140px] lg:w-[155px] lg:h-[155px]"
+              className="absolute top-[50%] left-[48.6%] lg:top-[55%] lg:left-[49.1%] md:top-[55%] md:left-[48.5%] transform -translate-x-1/2  -translate-y-1/2 z-10 w-[75px] h-[75px]  md:w-[140px] md:h-[140px] lg:w-[155px] lg:h-[155px]"
             />
             {/* Lottie Animation Background */}
             <Lottie
