@@ -19,9 +19,9 @@ export const HeroSectionMain = () => {
         height={100}
         alt="network image"
         style={{
-          animation: "spin 10s linear infinite",
+          animation: "spin 130s linear infinite",
         }}
-        className="w-full h-full z-2 object-contain opacity-15 animate-spin absolute"
+        className="w-full h-full z-2 -bottom-110 object-contain opacity-20 animate-spin absolute"
       />
       <Starfield />
       <Lines />
