@@ -153,7 +153,7 @@ const SafariQTravelSection: React.FC = () => {
     <div
       ref={sectionRef}
       id="ecosystem"
-      className="relative mb-0 md:mb-[50px] min-h-screen bg-white overflow-visible"
+      className="relative  min-h-screen bg-white overflow-visible"
     >
       <div className="flex justify-center items-center mt-[50px] md:mt-[30px] w-full">
         <Image
@@ -425,7 +425,7 @@ const SafariQTravelSection: React.FC = () => {
           <div className="grid grid-cols-2 gap-16 max-w-6xl mx-auto">
             <div
               ref={cardsLeftRef}
-              className="relative h-[400px] overflow-hidden"
+              className="relative min-h-[300px] overflow-hidden"
             >
               {leftCards.map((card, index) => {
                 // Modified animation logic to show first card initially
@@ -456,7 +456,7 @@ const SafariQTravelSection: React.FC = () => {
                 }
 
                 // Stacking animation
-                const basePosition = 350; // Start position (further below)
+                const basePosition = 420; // Increased from 350 to 420 for better spacing
                 const stackOffset = index * 8; // Tighter stacking - 8px per card
                 const finalPosition = stackOffset; // Stack upward from base
 
@@ -533,7 +533,7 @@ const SafariQTravelSection: React.FC = () => {
             </div>
             <div
               ref={cardsRightRef}
-              className="relative h-[400px] overflow-hidden"
+              className="relative min-h-[300px] overflow-hidden"
             >
               {rightCards.map((card, index) => {
                 // Modified identical synchronized animation logic for right side
@@ -564,7 +564,7 @@ const SafariQTravelSection: React.FC = () => {
                 }
 
                 // Stacking animation
-                const basePosition = 350; // Start position (further below)
+                const basePosition = 420; // Increased from 350 to 420 for better spacing
                 const stackOffset = index * 8; // Tighter stacking - 8px per card
                 const finalPosition = stackOffset; // Stack upward from base
 
