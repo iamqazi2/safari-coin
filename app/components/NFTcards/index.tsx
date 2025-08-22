@@ -70,7 +70,7 @@ const NFTCardsSlider: React.FC = () => {
       price: "Standard Price 5$",
       description: "Limited Supply, will be minted randomly.",
       reward: "$55 SED Tokens + Standard utility.",
-      image: "/purples.svg",
+      image: "/QuantumBrick.svg",
       type: "QUANTUM",
     },
   ];
@@ -198,12 +198,6 @@ const NFTCardsSlider: React.FC = () => {
 
   return (
     <div className="w-full bg-black mx-auto py-8 relative overflow-hidden px-6">
-      {/* Left gradient overlay */}
-      <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 lg:w-72 bg-gradient-to-r from-black via-black/70 to-transparent z-10 pointer-events-none" />
-
-      {/* Right gradient overlay */}
-      <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 lg:w-72 bg-gradient-to-l from-black via-black/70 to-transparent z-10 pointer-events-none" />
-
       <div className="relative">
         {/* Cards Container */}
         <div className="overflow-visible">
@@ -239,7 +233,7 @@ const NFTCardsSlider: React.FC = () => {
                         alt={card.name}
                         width={100}
                         height={100}
-                        className="w-full h-full object-cover rounded-xl shadow-2xl"
+                        className="w-full h-full object-contain rounded-xl shadow-2xl"
                         draggable={false}
                       />
                     </div>
@@ -262,10 +256,10 @@ const NFTCardsSlider: React.FC = () => {
                           {card.price}
                         </p>
                       </div>
-                      <p className="text-xs sm:text-sm text-gray-300 mb-3 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                         {card.description}
                       </p>
-                      <div className="border-t border-white/20 pt-2">
+                      <div className="">
                         <p className="text-xs font-semibold text-white mb-1">
                           Reward:
                         </p>

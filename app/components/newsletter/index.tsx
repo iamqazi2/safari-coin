@@ -32,12 +32,12 @@ export default function Newsletter() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter Your Email Address"
-              className="flex-1 bg-transparent px-3 sm:px-4 font-normal py-3 sm:py-4 lg:py-[19px] text-sm sm:text-base text-white/50 placeholder-gray-400 outline-none leading-[1.25] tracking-normal"
+              className="flex-1 bg-transparent px-2 font-normal py-4 xl:px-4 xl:py-[19px] text-sm sm:text-base text-white/50 placeholder-gray-400 outline-none leading-[1.25] tracking-normal"
               required
             />
             <button
               type="submit"
-              className="bg-[#00A8C5] cursor-pointer text-white font-semibold w-[100px] sm:w-[120px] lg:w-[140px] h-[40px] sm:h-[48px] lg:h-[53px] text-sm sm:text-base leading-none rounded-full transition-colors flex-shrink-0"
+              className="bg-[#00A8C5] cursor-pointer text-white font-semibold  w-[120px] xl:w-[140px] h-[48px] xl:h-[53px] text-sm sm:text-base leading-none rounded-full transition-colors flex-shrink-0"
             >
               Subscribe
             </button>

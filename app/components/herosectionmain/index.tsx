@@ -12,7 +12,7 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 // Hero Section Component
 export const HeroSectionMain = () => {
   return (
-    <div className="relative min-h-screen px-2 bg-black overflow-hidden">
+    <div className="relative min-h-[calc(100vh-110px)] md:min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-120px)] px-2 bg-black overflow-hidden">
       <Image
         src={"/bg.png"}
         width={1920}
@@ -23,14 +23,14 @@ export const HeroSectionMain = () => {
         style={{
           animation: "spin 130s linear infinite",
         }}
-        className="w-full h-full z-2 object-contain opacity-20 animate-spin absolute -bottom-[60%] md:bottom-[-75%] left-1/2 transform -translate-x-1/2"
+        className="w-full h-full z-2 object-contain opacity-20 animate-spin absolute bottom-[-50%] left-1/2 transform -translate-x-1/2"
       />
       <Starfield />
       <Lines />
       <Navbar />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[110px] md:pt-[100px] lg:pt-[120px] min-h-screen">
-        <div className="text-center min-h-[calc(100vh-110px)] md:min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-120px)] flex flex-col justify-between pb-4 sm:pb-6 md:pb-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[160px] md:pt-[120px] lg:pt-[120px] min-h-screen">
+        <div className="text-center  gap-2 flex flex-col justify-between pb-4 sm:pb-6 md:pb-8">
           {/* Content Section */}
           <div className="flex-shrink-0">
             {/* Main Heading */}
@@ -64,9 +64,9 @@ export const HeroSectionMain = () => {
             </div>
           </div>
 
-          {/* Animation Section - Fixed height instead of flex-1 */}
+          {/* Animation Section - Larger Lottie animation with centered coin */}
           <div className="flex-shrink-0 flex items-center justify-center py-4">
-            <div className="relative w-full max-w-[280px] h-[200px] sm:max-w-[320px] sm:h-[240px] md:max-w-[380px] md:h-[280px] lg:max-w-[450px] lg:h-[320px] xl:max-w-[520px] xl:h-[340px] 2xl:max-w-[570px] 2xl:h-[360px]">
+            <div className="relative w-full max-w-[420px] h-[250px] md:max-w-[580px] md:h-[440px] lg:max-w-[700px] lg:h-[520px] xl:max-w-[800px] xl:h-[450px] ">
               {/* Lottie Animation Background */}
               <Lottie
                 animationData={networkAnimation}
@@ -79,7 +79,7 @@ export const HeroSectionMain = () => {
                 className="absolute inset-0"
               />
 
-              {/* Centered Circle SVG - Fixed positioning for perfect center */}
+              {/* Centered Circle SVG - Perfectly centered and proportionally sized */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="flex items-center justify-center">
                   <Image
@@ -87,10 +87,11 @@ export const HeroSectionMain = () => {
                     width={150}
                     height={150}
                     alt="network image"
-                    className="z-10 w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] md:w-[75px] md:h-[75px] lg:w-[95px] lg:h-[95px] xl:w-[110px] xl:h-[110px] 2xl:w-[130px] 2xl:h-[130px]"
-                    style={{
-                      transform: "translate(-4.5px, -2px)", // Fine-tune centering if needed
-                    }}
+                    className="z-10 w-[70px] h-[70px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px]
+             -translate-x-[6px] -translate-y-[2px]
+             md:-translate-x-[9px] md:-translate-y-[3px]
+             lg:-translate-x-[11px] lg:-translate-y-[2px]]
+             xl:-translate-x-[11px] xl:-translate-y-[2px]"
                   />
                 </div>
               </div>

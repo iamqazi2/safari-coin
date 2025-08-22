@@ -72,7 +72,7 @@ export const Navbar = () => {
         } ${isScrolled ? "bg-black/40" : "bg-white/10"}`}
       >
         <div className="px-4">
-          <div className="flex justify-between items-center  h-16 md:h-[66px]">
+          <div className="flex justify-between items-center  h-14 md:h-[66px]">
             <Link href={"/"}>
               <Image
                 className="absolute -left-30 top-0 "

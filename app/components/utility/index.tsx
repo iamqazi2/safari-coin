@@ -28,12 +28,12 @@ const TravelTokensSection = () => {
     {
       title: "SafariQ Engagement Dirham",
       subtitle:
-        "Created for Rewards, AED Pegged SED, with Built-in Moon Engine..",
+        "Created for Rewards,Floor AED pegged with, Built-in Moon Engine..",
       prelaunch: "Signup + referrals.",
       postlaunch: "Travel cashback.",
       points: ["World's widest utility → every city, every service."],
-      image: "/coins.svg",
-      buttons: [{ text: "Mint NFT", primary: true }],
+      image: "/coins_img.svg",
+      buttons: [{ text: "Get Prelaunch Bonus", primary: true }],
     },
     {
       title: "Foundation Brick ~ Key NFTs",
@@ -107,9 +107,6 @@ const TravelTokensSection = () => {
             key={index}
             className="w-full rounded-2xl bg-[#1A1B23]/60 p-6 backdrop-blur-md border border-white/20"
           >
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-white text-sm">SafariQ</span>
-            </div>
             <CardContent {...card} mobile />
           </div>
         ))}
@@ -160,7 +157,7 @@ const CardContent: React.FC<
           <Image
             src={image}
             alt="card image"
-            width={500}
+            width={450}
             height={340}
             className="absolute top-50 left-0"
           />
@@ -263,9 +260,9 @@ const CardContent: React.FC<
         <Image
           src={image}
           alt="card image"
-          width={500}
+          width={450}
           height={340}
-          className="absolute top-10 -right-0"
+          className="absolute top-10 right-4"
         />
       )}
     </div>

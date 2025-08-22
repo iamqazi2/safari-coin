@@ -19,12 +19,9 @@ interface ServiceCard {
 const SafariQTravelSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const bannerRef = useRef<HTMLDivElement>(null);
-  const cardsLeftRef = useRef<HTMLDivElement>(null);
-  const cardsRightRef = useRef<HTMLDivElement>(null);
-  const mobileSliderRef = useRef<HTMLDivElement>(null);
+  const cardsGridRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
 
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   // Integration partners data
@@ -121,41 +118,65 @@ const SafariQTravelSection: React.FC = () => {
       });
     }
 
-    if (!isMobile) {
-      // Desktop: Pinning and card scroll animations - FASTER AND SHORTER
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=150%", // Reduced from 300% to 150% for much less scroll
-        pin: true,
-        scrub: 0.1, // Reduced from 0.3 to 0.1 for much faster animation
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const cardIndex = Math.floor(progress * 20); // Updated to 20 for 20 cards
-          setCurrentCardIndex(cardIndex);
-        },
-      });
+    if (cardsGridRef.current) {
+      // Grid card reveal animations for both desktop and mobile
+      const cards = cardsGridRef.current.querySelectorAll(".service-card");
 
-      // Initialize to show first cards - changed from 1 to 0 to ensure first cards are visible
-      setCurrentCardIndex(0);
+      cards.forEach((card, index) => {
+        gsap.set(card, {
+          opacity: 0,
+          y: 50,
+          scale: 0.9,
+        });
+
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top 95%",
+          end: "bottom 5%",
+          onEnter: () => {
+            gsap.to(card, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              ease: "back.out(1.2)",
+              delay: isMobile ? (index % 2) * 0.1 : (index % 3) * 0.1, // Stagger animation for cards in the same row
+            });
+          },
+          onLeave: () => {
+            gsap.to(card, {
+              opacity: 0.3,
+              scale: 0.95,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          },
+          onEnterBack: () => {
+            gsap.to(card, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.4,
+              ease: "power2.out",
+            });
+          },
+        });
+      });
     }
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       bannerAnimation.kill();
     };
-  }, [isMobile, integrationPartners.length]); // Add integrationPartners.length to the dependency array
-
-  const leftCards = serviceCards.slice(0, 10);
-  const rightCards = serviceCards.slice(10, 20);
+  }, [isMobile, integrationPartners.length]);
 
   return (
     <div
       ref={sectionRef}
       id="ecosystem"
-      className="relative  min-h-screen bg-white overflow-visible"
+      className="relative min-h-screen bg-white overflow-visible py-[100px]"
     >
-      <div className="flex justify-center items-center mt-[50px] md:mt-[30px] w-full">
+      <div className="flex justify-center items-center  w-full">
         <Image
           src={"/sec-icons.svg"}
           height={137}
@@ -221,426 +242,50 @@ const SafariQTravelSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Service Cards Section */}
-        {isMobile ? (
-          <div className="relative">
-            {/* Mobile Scroll Indicator */}
-            <div className="flex justify-center items-center mb-4 relative">
+        {/* Service Cards Section - Now shows desktop cards on both desktop and mobile */}
+        <div
+          ref={cardsGridRef}
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 max-w-6xl mx-auto"
+        >
+          {serviceCards.map((card) => (
+            <div
+              key={card.id}
+              className="service-card group cursor-pointer transform transition-all rounded-[18px] md:rounded-[28px] duration-300 hover:scale-105 hover:shadow-2xl"
+            >
               <div
-                className="flex items-center space-x-2 px-4 py-2 rounded-full"
+                className="relative rounded-[18px] md:rounded-[28px] backdrop-blur-sm p-3 md:p-6 h-full group-hover:bg-transparent shadow-[0_3px_0_0_#5DE7FF] md:shadow-[0_6px_0_0_#5DE7FF] group-hover:border-1 group-hover:border-[#4CD9ED] group-hover:shadow-[0_3px_0_0_#5DE7FF] md:group-hover:shadow-[0_6px_0_0_#5DE7FF]"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(93, 231, 255, 0.3) 0%, rgba(0, 168, 197, 0.3) 100%)",
-                  backdropFilter: "blur(20px)",
-                  border: "1px solid rgba(93, 231, 255, 0.2)",
+                    "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
+                  border: "1px solid rgba(148, 163, 184, 0.3)",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               >
-                <span className="text-sm text-gray-700 font-medium">
-                  Swipe to explore
-                </span>
-                <div ref={indicatorRef} className="flex items-center space-x-1">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="text-blue-500"
-                  >
-                    <path
-                      d="M8 4L16 12L8 20"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="text-blue-400 opacity-70"
-                  >
-                    <path
-                      d="M8 4L16 12L8 20"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="text-blue-300 opacity-50"
-                  >
-                    <path
-                      d="M8 4L16 12L8 20"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                <div className="relative flex flex-col md:flex-row items-center md:space-x-4 space-y-2 md:space-y-0 h-full text-center md:text-left">
+                  {/* Icon Container with enhanced styling - NO color changes on hover */}
+                  <div className="flex-shrink-0 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-10 h-10 md:w-16 md:h-16 rounded-xl group-hover:border-[#4CD9ED] group-hover:border-1 flex items-center justify-center group-hover:shadow-md transition-shadow duration-300">
+                      <Image
+                        src={card.image}
+                        alt="service icon"
+                        height={40}
+                        width={40}
+                        className="w-6 h-6 md:w-10 md:h-10 object-contain transition-all duration-300"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Text content with NO color changes on hover */}
+                  <div className="flex-1">
+                    <h3 className="text-[12px] md:text-[16px] lg:text-[20px] font-[500] text-black leading-tight transition-all duration-300">
+                      {card.title}
+                    </h3>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Card Progress Indicator */}
-            <div className="flex justify-center mb-6">
-              <div
-                className="flex items-center space-x-2 px-4 py-2 rounded-full"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(93, 231, 255, 0.2) 0%, rgba(0, 168, 197, 0.2) 100%)",
-                  backdropFilter: "blur(15px)",
-                  border: "1px solid rgba(93, 231, 255, 0.15)",
-                }}
-              >
-                {serviceCards.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentCardIndex % serviceCards.length
-                        ? "bg-blue-500 scale-125"
-                        : "bg-gray-300"
-                    }`}
-                    style={{
-                      background:
-                        index === currentCardIndex % serviceCards.length
-                          ? "linear-gradient(135deg, #5DE7FF 0%, #00A8C5 100%)"
-                          : "#d1d5db",
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div
-              ref={mobileSliderRef}
-              className="flex overflow-x-auto scrollbar-hide pb-4 px-6 snap-x snap-mandatory"
-              style={{
-                scrollSnapType: "x mandatory",
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-              }}
-              onScroll={(e) => {
-                const scrollLeft = e.currentTarget.scrollLeft;
-                const cardWidth = 320; // Approximate width including margins
-                const newIndex = Math.round(scrollLeft / cardWidth);
-                setCurrentCardIndex(newIndex);
-              }}
-            >
-              {serviceCards.map((card) => (
-                <div key={card.id} className="flex-shrink-0 mx-2">
-                  {/* Layered Card Design */}
-                  <div className="relative w-[300px] min-w-[200px] h-32 mx-auto my-5">
-                    {/* Back layer - furthest back - 40px smaller (20px on each side) */}
-                    <div
-                      className="absolute top-6 w-[calc(100%-40px)] h-[calc(100%-2px)]"
-                      style={{
-                        left: "20px",
-                        borderRadius: "43px",
-                        border: "1px solid rgba(98, 98, 98, 0.34)",
-                        opacity: 0.5,
-                        background:
-                          "linear-gradient(180deg, rgba(93, 231, 255, 0.50) 0%, rgba(0, 168, 197, 0.50) 100%)",
-                        backdropFilter: "blur(28px)",
-                      }}
-                    />
-                    {/* Middle layer - 20px smaller (10px on each side) */}
-                    <div
-                      className="absolute top-5 w-[calc(100%-20px)] h-[calc(100%-7px)]"
-                      style={{
-                        left: "10px",
-                        borderRadius: "43px",
-                        border: "1px solid rgba(98, 98, 98, 0.34)",
-                        opacity: 0.5,
-                        background:
-                          "linear-gradient(180deg, #5DE7FF 0%, #00A8C5 100%)",
-                        backdropFilter: "blur(28px)",
-                      }}
-                    />
-                    {/* Front layer - main content - full size */}
-                    <div
-                      className="relative w-full h-full flex items-center px-6 py-4"
-                      style={{
-                        borderRadius: "43px",
-                        border: "1px solid rgba(98, 98, 98, 0.34)",
-                        background: "#FFF",
-                        backdropFilter: "blur(28px)",
-                      }}
-                    >
-                      {/* Icon Container */}
-                      <div className="flex-shrink-0 mr-5">
-                        <div className="relative flex justify-center items-center w-14 h-14">
-                          {/* Main circle background */}
-                          {/* Card Icon */}
-                          <Image
-                            src={card.image}
-                            alt="icons"
-                            height={32}
-                            width={32}
-                            className="w-12 h-12 object-contain"
-                          />
-                        </div>
-                      </div>
-                      {/* Text content */}
-                      <div className="flex-1">
-                        <div className="text-gray-900 font-medium text-lg leading-snug">
-                          {card.title.split(" ").length > 2 ? (
-                            <>
-                              <div>
-                                {card.title
-                                  .split(" ")
-                                  .slice(
-                                    0,
-                                    Math.ceil(card.title.split(" ").length / 2)
-                                  )
-                                  .join(" ")}
-                              </div>
-                              <div>
-                                {card.title
-                                  .split(" ")
-                                  .slice(
-                                    Math.ceil(card.title.split(" ").length / 2)
-                                  )
-                                  .join(" ")}
-                              </div>
-                            </>
-                          ) : (
-                            <div>{card.title}</div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 gap-16 max-w-6xl mx-auto">
-            <div
-              ref={cardsLeftRef}
-              className="relative min-h-[300px] overflow-hidden"
-            >
-              {leftCards.map((card, index) => {
-                // Modified animation logic to show first card initially
-                const scrollProgress = Math.min(
-                  1,
-                  Math.max(0, currentCardIndex / 20) // Updated to 20 for 20 cards
-                );
-                const pairIndex = Math.floor(index); // Which pair this card belongs to (0,1,2,3...)
-                const cardTrigger = pairIndex * 0.05; // Adjusted for 20 cards (0.05 per card)
-
-                // Modified to ensure first card (index 0) is always visible
-                let cardProgress;
-                if (index === 0) {
-                  // First card starts visible and can be animated out
-                  cardProgress =
-                    scrollProgress === 0
-                      ? 1
-                      : Math.max(
-                          0,
-                          Math.min(1, (scrollProgress - cardTrigger) * 20)
-                        );
-                } else {
-                  // Other cards animate in as before
-                  cardProgress = Math.max(
-                    0,
-                    Math.min(1, (scrollProgress - cardTrigger) * 20)
-                  );
-                }
-
-                // Stacking animation
-                const basePosition = 420; // Increased from 350 to 420 for better spacing
-                const stackOffset = index * 8; // Tighter stacking - 8px per card
-                const finalPosition = stackOffset; // Stack upward from base
-
-                // Modified translateY calculation for first card
-                let translateY;
-                if (index === 0) {
-                  // First card starts at final position
-                  translateY =
-                    scrollProgress === 0
-                      ? finalPosition
-                      : basePosition -
-                        cardProgress * (basePosition - finalPosition);
-                } else {
-                  translateY =
-                    basePosition -
-                    cardProgress * (basePosition - finalPosition);
-                }
-
-                // Enhanced visual effects
-                const zIndex = 50 + index; // Higher base z-index
-
-                // Modified opacity calculation for first card
-                let opacity;
-                if (index === 0) {
-                  // First card is always visible initially
-                  opacity =
-                    scrollProgress === 0 ? 1 : Math.min(1, cardProgress * 3);
-                } else {
-                  opacity = Math.min(1, cardProgress * 3); // Faster fade in
-                }
-
-                const scale = 0.95 + cardProgress * 0.05; // Subtle scale effect
-
-                return (
-                  <div
-                    key={card.id}
-                    className="service-card absolute top-0 left-0 w-full bg-gradient-to-r from-white to-gray-50 border border-gray-200  rounded-[28px] backdrop-blur-sm"
-                    style={{
-                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                      transform: `translateY(${translateY}px) scale(${scale})`,
-                      zIndex: zIndex,
-                      opacity: opacity,
-                      background:
-                        "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
-                      border: "1px solid rgba(148, 163, 184, 0.3)",
-                    }}
-                  >
-                    <div className="flex items-center justify-center h-full px-6 py-8">
-                      <div className="flex items-center space-x-4 w-full">
-                        {/* Icon Container with enhanced styling */}
-                        <div className="flex-shrink-0 flex items-center justify-center">
-                          <div className="w-16 h-16 rounded-xl flex items-center justify-center">
-                            <Image
-                              src={card.image}
-                              alt="service icon"
-                              height={32}
-                              width={32}
-                              className="w-18 h-18 object-contain "
-                            />
-                          </div>
-                        </div>
-
-                        {/* Text content with better typography */}
-                        <div className="flex-1">
-                          <h3 className="text-[18px] md:text-[22px] lg:text-[28px] font-[500] text-gray-800 leading-tight">
-                            {card.title}
-                          </h3>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <div
-              ref={cardsRightRef}
-              className="relative min-h-[300px] overflow-hidden"
-            >
-              {rightCards.map((card, index) => {
-                // Modified identical synchronized animation logic for right side
-                const scrollProgress = Math.min(
-                  1,
-                  Math.max(0, currentCardIndex / 20) // Updated to 20 for 20 cards
-                );
-                const pairIndex = Math.floor(index); // Which pair this card belongs to (0,1,2,3...)
-                const cardTrigger = pairIndex * 0.05; // Adjusted for 20 cards (0.05 per card)
-
-                // Modified to ensure first card (index 0) is always visible
-                let cardProgress;
-                if (index === 0) {
-                  // First card starts visible and can be animated out
-                  cardProgress =
-                    scrollProgress === 0
-                      ? 1
-                      : Math.max(
-                          0,
-                          Math.min(1, (scrollProgress - cardTrigger) * 20)
-                        );
-                } else {
-                  // Other cards animate in as before
-                  cardProgress = Math.max(
-                    0,
-                    Math.min(1, (scrollProgress - cardTrigger) * 20)
-                  );
-                }
-
-                // Stacking animation
-                const basePosition = 420; // Increased from 350 to 420 for better spacing
-                const stackOffset = index * 8; // Tighter stacking - 8px per card
-                const finalPosition = stackOffset; // Stack upward from base
-
-                // Modified translateY calculation for first card
-                let translateY;
-                if (index === 0) {
-                  // First card starts at final position
-                  translateY =
-                    scrollProgress === 0
-                      ? finalPosition
-                      : basePosition -
-                        cardProgress * (basePosition - finalPosition);
-                } else {
-                  translateY =
-                    basePosition -
-                    cardProgress * (basePosition - finalPosition);
-                }
-
-                // Enhanced visual effects
-                const zIndex = 50 + index; // Higher base z-index
-
-                // Modified opacity calculation for first card
-                let opacity;
-                if (index === 0) {
-                  // First card is always visible initially
-                  opacity =
-                    scrollProgress === 0 ? 1 : Math.min(1, cardProgress * 3);
-                } else {
-                  opacity = Math.min(1, cardProgress * 3); // Faster fade in
-                }
-
-                const scale = 0.95 + cardProgress * 0.05; // Subtle scale effect
-
-                return (
-                  <div
-                    key={card.id}
-                    className="service-card absolute top-0 left-0 w-full bg-gradient-to-r from-white to-gray-50 border border-gray-200 rounded-[28px] backdrop-blur-sm"
-                    style={{
-                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                      transform: `translateY(${translateY}px) scale(${scale})`,
-                      zIndex: zIndex,
-                      opacity: opacity,
-                      background:
-                        "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
-                      border: "1px solid rgba(148, 163, 184, 0.3)",
-                    }}
-                  >
-                    <div className="flex items-center justify-center h-full px-6 py-8">
-                      <div className="flex items-center space-x-4 w-full">
-                        {/* Icon Container with enhanced styling */}
-                        <div className="flex-shrink-0 flex items-center justify-center">
-                          <div className="w-16 h-16 rounded-xl flex items-center justify-center">
-                            <Image
-                              src={card.image}
-                              alt="service icon"
-                              height={32}
-                              width={32}
-                              className="w-18 h-18 object-contain "
-                            />
-                          </div>
-                        </div>
-
-                        {/* Text content with better typography */}
-                        <div className="flex-1">
-                          <h3 className="text-[18px] md:text-[22px] lg:text-[28px] font-[500] text-gray-800 leading-tight">
-                            {card.title}
-                          </h3>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );

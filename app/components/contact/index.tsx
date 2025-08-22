@@ -196,12 +196,12 @@ const TravelSignupSection: React.FC = () => {
                       </span>
                       <ChevronDown
                         className={`w-5 h-5 text-white/70 transition-transform duration-200 ${
-                          isCountryOpen ? "rotate-180" : ""
+                          isReferalOpen ? "rotate-180" : ""
                         }`}
                       />
                     </button>
 
-                    {Referral && (
+                    {isReferalOpen && (
                       <div className="absolute top-full left-0 right-0 mt-2 bg-black border border-white/20 rounded-2xl shadow-xl z-10 max-h-60 overflow-y-auto">
                         {Referral.map((country) => (
                           <button

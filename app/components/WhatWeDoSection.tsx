@@ -35,7 +35,7 @@ const WhatWeDoSection = () => {
               }}
             >
               <div
-                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl xl:h-[180px]  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
                   border: ".5px solid #4CD9ED",
@@ -52,7 +52,7 @@ const WhatWeDoSection = () => {
 
             <div className="rounded-xl md:rounded-2xl" style={{}}>
               <div
-                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl xl:h-[180px]  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
                   border: ".5px solid #4CD9ED",
@@ -71,7 +71,7 @@ const WhatWeDoSection = () => {
             {/* Row 2 */}
             <div className="rounded-xl md:rounded-2xl" style={{}}>
               <div
-                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl xl:h-[180px]  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
                   border: ".5px solid #4CD9ED",
@@ -94,7 +94,7 @@ const WhatWeDoSection = () => {
               }}
             >
               <div
-                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl xl:h-[180px]  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
                   border: ".5px solid #4CD9ED",
@@ -117,7 +117,7 @@ const WhatWeDoSection = () => {
               }}
             >
               <div
-                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl xl:h-[180px]  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
                   border: ".5px solid #4CD9ED",
@@ -139,7 +139,7 @@ const WhatWeDoSection = () => {
               }}
             >
               <div
-                className="rounded-xl md:rounded-2xl  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-xl md:rounded-2xl xl:h-[180px]  p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
                   border: ".5px solid #4CD9ED",
