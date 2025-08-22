@@ -12,7 +12,7 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 // Hero Section Component
 export const HeroSectionMain = () => {
   return (
-    <div className="relative h-screen px-2 bg-black overflow-hidden">
+    <div className="relative min-h-screen px-2 bg-black overflow-hidden">
       <Image
         src={"/bg.png"}
         width={1920}
@@ -29,8 +29,8 @@ export const HeroSectionMain = () => {
       <Lines />
       <Navbar />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[110px] md:pt-[100px] lg:pt-[120px] h-full">
-        <div className="text-center h-full flex flex-col justify-between pb-4 sm:pb-6 md:pb-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[110px] md:pt-[100px] lg:pt-[120px] min-h-screen">
+        <div className="text-center min-h-[calc(100vh-110px)] md:min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-120px)] flex flex-col justify-between pb-4 sm:pb-6 md:pb-8">
           {/* Content Section */}
           <div className="flex-shrink-0">
             {/* Main Heading */}
@@ -64,9 +64,9 @@ export const HeroSectionMain = () => {
             </div>
           </div>
 
-          {/* Animation Section - Takes remaining space but limited height */}
-          <div className="flex-1 flex items-center justify-center min-h-0">
-            <div className="relative w-full max-w-[300px] h-[220px] md:max-w-[380px] md:h-[280px] lg:max-w-[450px] lg:h-[320px] xl:max-w-[570px] xl:h-[360px]">
+          {/* Animation Section - Fixed height instead of flex-1 */}
+          <div className="flex-shrink-0 flex items-center justify-center py-4">
+            <div className="relative w-full max-w-[280px] h-[200px] sm:max-w-[320px] sm:h-[240px] md:max-w-[380px] md:h-[280px] lg:max-w-[450px] lg:h-[320px] xl:max-w-[520px] xl:h-[340px] 2xl:max-w-[570px] 2xl:h-[360px]">
               {/* Lottie Animation Background */}
               <Lottie
                 animationData={networkAnimation}
@@ -87,7 +87,7 @@ export const HeroSectionMain = () => {
                     width={150}
                     height={150}
                     alt="network image"
-                    className="z-10 w-[60px] h-[60px] md:w-[75px] md:h-[75px] lg:w-[95px] lg:h-[95px] xl:w-[115px] xl:h-[115px] 2xl:w-[130px] 2xl:h-[130px]"
+                    className="z-10 w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] md:w-[75px] md:h-[75px] lg:w-[95px] lg:h-[95px] xl:w-[110px] xl:h-[110px] 2xl:w-[130px] 2xl:h-[130px]"
                     style={{
                       transform: "translate(-4.5px, -2px)", // Fine-tune centering if needed
                     }}

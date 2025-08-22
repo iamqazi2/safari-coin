@@ -17,6 +17,11 @@ const countries = [
   { code: "MX", name: "Mexico" },
   // Add more countries as needed
 ];
+const Referral = [
+  { code: "rf", name: "Referral LiCodenk " },
+
+  // Add more countries as needed
+];
 
 const TravelSignupSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -28,6 +33,7 @@ const TravelSignupSection: React.FC = () => {
   });
 
   const [isCountryOpen, setIsCountryOpen] = useState(false);
+  const [isReferalOpen, setReferalOpen] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({
@@ -39,6 +45,10 @@ const TravelSignupSection: React.FC = () => {
   const handleCountrySelect = (country: string) => {
     handleInputChange("country", country);
     setIsCountryOpen(false);
+  };
+  const handleReferalSelect = (referal: string) => {
+    handleInputChange("referal", referal);
+    setReferalOpen(false);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -101,7 +111,6 @@ const TravelSignupSection: React.FC = () => {
                       className="w-full px-6 py-4 bg-transparent border border-white/20 rounded-full text-white placeholder-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200"
                     />
                   </div>
-
                   {/* Email Input */}
                   <div>
                     <input
@@ -114,7 +123,6 @@ const TravelSignupSection: React.FC = () => {
                       className="w-full px-6 py-4 bg-transparent border border-white/20 rounded-full text-white placeholder-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200"
                     />
                   </div>
-
                   {/* Country Dropdown */}
                   <div className="relative">
                     <button
@@ -151,7 +159,63 @@ const TravelSignupSection: React.FC = () => {
                       </div>
                     )}
                   </div>
+                  <div>
+                    <input
+                      type="email"
+                      placeholder="Enter your Password"
+                      value={formData.email}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
+                      className="w-full px-6 py-4 bg-transparent border border-white/20 rounded-full text-white placeholder-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200"
+                    />
+                  </div>{" "}
+                  <div>
+                    <input
+                      type="email"
+                      placeholder="Re-enter your Password"
+                      value={formData.email}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
+                      className="w-full px-6 py-4 bg-transparent border border-white/20 rounded-full text-white placeholder-white/70 focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200"
+                    />
+                  </div>
+                  <div className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setReferalOpen(!isReferalOpen)}
+                      className="w-full px-6 py-4 bg-transparent border border-white/20 rounded-full text-left text-white focus:outline-none focus:border-[#3EB9CF] focus:ring-2 focus:ring-[#3EB9CF]/20 transition-all duration-200 flex items-center justify-between"
+                    >
+                      <span
+                        className={
+                          formData.country ? "text-white" : "text-white/70"
+                        }
+                      >
+                        {formData.country || "Enter referral code (optional)"}
+                      </span>
+                      <ChevronDown
+                        className={`w-5 h-5 text-white/70 transition-transform duration-200 ${
+                          isCountryOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
 
+                    {Referral && (
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-black border border-white/20 rounded-2xl shadow-xl z-10 max-h-60 overflow-y-auto">
+                        {Referral.map((country) => (
+                          <button
+                            key={country.code}
+                            type="button"
+                            onClick={() => handleReferalSelect(country.name)}
+                            className="w-full px-6 py-3 text-left text-white hover:bg-black/80 transition-colors duration-200 first:rounded-t-2xl last:rounded-b-2xl"
+                          >
+                            {country.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                   {/* Submit Button */}
                   <button
                     type="submit"

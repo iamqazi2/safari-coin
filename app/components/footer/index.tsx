@@ -89,19 +89,19 @@ export default function Footer() {
           <p className="text-base font-medium">Contact us</p>
           <form
             onSubmit={handleSubmit}
-            className="flex flex-row items-center w-full max-w-md lg:max-w-none px-0 md:px-1 bg-transparent border border-white/50 rounded-full overflow-hidden shadow-md"
+            className="flex flex-row items-center w-full max-w-md lg:max-w-none px-1 md:px-1 bg-transparent border border-white/50 rounded-full overflow-hidden shadow-md"
           >
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email Address"
-              className="flex-1 w-full sm:w-auto bg-transparent px-4 font-normal py-3 sm:py-[19px] text-sm lg:text-base text-white/50 placeholder-gray-400 outline-none leading-[1.25] tracking-normal"
+              className="flex-1 w-full sm:w-auto bg-transparent px-6 font-normal py-[19px] text-sm lg:text-base text-white/50 placeholder-gray-400 outline-none leading-[1.25] tracking-normal"
               required
             />
             <button
               type="submit"
-              className="bg-[#00A8C5] cursor-pointer text-white font-semibold md:w-full w-[136px] h-[48px] text-sm lg:text-base leading-none rounded-full sm:rounded-full transition-colors l mt-0"
+              className="bg-[#00A8C5] cursor-pointer text-white font-semibold md:w-full w-[136px] h-[48px] text-sm lg:text-base leading-none rounded-full sm:rounded-full transition-colors lg:mt-0"
             >
               Contact us
             </button>
