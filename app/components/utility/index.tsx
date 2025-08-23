@@ -72,7 +72,7 @@ const TravelTokensSection = () => {
         alt="star"
         width={100}
         height={240}
-        className="absolute bottom-4 md:bottom-8 z-0 left-4 md:left-14 w-12 md:w-20 lg:w-auto"
+        className="absolute bottom-4 md:bottom-8 hidden lg:block z-0 left-4 md:left-14 w-12 md:w-20 lg:w-auto"
       />
 
       {/* Title */}
