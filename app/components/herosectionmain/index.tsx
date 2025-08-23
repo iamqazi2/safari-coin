@@ -12,7 +12,7 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 // Hero Section Component
 export const HeroSectionMain = () => {
   return (
-    <div className="relative min-h-[calc(100vh-170px)] md:min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-120px)] px-2 bg-black overflow-hidden">
+    <div className="relative min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-120px)] px-2 bg-black overflow-hidden">
       <Image
         src={"/bg.png"}
         width={1920}
@@ -34,13 +34,13 @@ export const HeroSectionMain = () => {
           {/* Content Section */}
           <div className="flex-shrink-0">
             {/* Main Heading */}
-            <h1 className="text-[19px] sm:text-[28px] md:text-[36px] lg:text-[40px] max-w-[888px] mx-auto font-[400] text-white leading-tight sm:leading-normal mb-3 sm:mb-4">
+            <h1 className="text-[16px] sm:text-[28px] md:text-[36px] lg:text-[40px] max-w-[888px] mx-auto font-[400] text-white leading-tight sm:leading-normal mb-3 sm:mb-4">
               Travel is Broken. We&apos;re Fixing It - With Web3 + <br />
               Patent-Ready AI.
             </h1>
 
             {/* Subtitle */}
-            <p className="text-[14px] sm:text-[16px] md:text-[20px] lg:text-[24px] text-white/80 max-w-[888px] mx-auto leading-relaxed mb-2">
+            <p className="text-[12px] sm:text-[16px] md:text-[20px] lg:text-[24px] text-white/80 max-w-[888px] mx-auto leading-relaxed mb-2">
               From scattered bookings to zero loyalty, the travel industry is
               fragmented. SafariQ is building a unified ecosystem powered by
               Web3 and a revolutionary AI core, bridging global services into
@@ -49,16 +49,16 @@ export const HeroSectionMain = () => {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-2 md:gap-4 justify-center items-center mb-4 sm:mb-6 md:mb-8">
-              <button className="w-full sm:w-auto border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
+              <button className="w-[220px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
                 Join the Journey
               </button>
               <a
                 href={"/how-it-works"}
-                className="w-full sm:w-auto border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300"
+                className="w-[220px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300"
               >
                 How SafariQ Works
               </a>
-              <button className="w-full sm:w-auto border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
+              <button className="w-[220px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
                 White Paper
               </button>
             </div>
