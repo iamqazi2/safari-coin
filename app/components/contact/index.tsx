@@ -79,7 +79,7 @@ const TravelSignupSection: React.FC = () => {
               {/* Left Side - Illustration */}
               <div className="flex justify-center lg:justify-start">
                 <Image
-                  src={"/contact.svg"}
+                  src={"/new_contact.svg"}
                   alt="contact"
                   width={100}
                   height={100}

@@ -41,7 +41,7 @@ const NFTCardsSlider: React.FC = () => {
       name: "Neon Brick",
       price: "Standard Price 5$",
       description: "Limited Supply, will be minted randomly for Lucky Minters.",
-      reward: "$550 SafariQ Travel voucher + Standard utility.",
+      reward: "$550 SafariQ Travel voucher + Standard utility.", // Corrected
       image: "/yellow.svg",
       type: "NEON",
     },
@@ -59,7 +59,7 @@ const NFTCardsSlider: React.FC = () => {
       name: "Quantum AZ Edition",
       price: "Standard Price 5$",
       description:
-        "Founder's Signature AZ as Brick attribute, Limited Supply, will be minted randomly.",
+        "Founder’s Signature “AZ” as Brick attribute, Limited Supply, will be minted randomly.",
       reward: "155 SED tokens + Standard utility.",
       image: "/purples.svg",
       type: "CYBER",
@@ -68,8 +68,8 @@ const NFTCardsSlider: React.FC = () => {
       id: 5,
       name: "Quantum Brick",
       price: "Standard Price 5$",
-      description: "Limited Supply, will be minted randomly.",
-      reward: "$55 SED Tokens + Standard utility.",
+      description: "",
+      reward: "55 SED Tokens + Standard utility.",
       image: "/QuantumBrick.svg",
       type: "QUANTUM",
     },
@@ -225,9 +225,9 @@ const NFTCardsSlider: React.FC = () => {
                 className="flex-shrink-0 flex justify-center items-center relative"
                 style={{ width: `${cardWidth}px` }}
               >
-                <div className="relative p-3 sm:p-4 rounded-2xl sm:rounded-3xl border backdrop-blur-sm h-full flex flex-col bg-[#1A1B235E] border-[#D3D3D357] shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 w-full">
+                <div className="relative p-3  rounded-2xl sm:rounded-3xl border backdrop-blur-sm h-full flex flex-col bg-[#1A1B235E] border-[#D3D3D357] shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 w-full">
                   <div className="relative mb-6 sm:mb-8 flex justify-center flex-1">
-                    <div className="relative mx-auto w-full max-w-[230px] md:max-w-[430px]">
+                    <div className="relative mx-auto w-full max-w-[230px] md:h-[400px] md:max-w-[400px]">
                       <Image
                         src={card.image}
                         alt={card.name}

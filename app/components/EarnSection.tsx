@@ -190,7 +190,7 @@ const EarnSection: React.FC = () => {
           <Image
             height={10}
             width={10}
-            src={"/hd.svg"}
+            src={"/Coin_Combined_new.svg"}
             alt="SafariQ E-Dirham Coin"
             className="w-full h-full object-contain drop-shadow-2xl"
           />

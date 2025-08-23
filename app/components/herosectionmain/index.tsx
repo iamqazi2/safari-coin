@@ -49,16 +49,16 @@ export const HeroSectionMain = () => {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-2 md:gap-4 justify-center items-center mb-4 sm:mb-6 md:mb-8">
-              <button className="w-[220px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
+              <button className="w-[220px] w-[250px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
                 Join the Journey
               </button>
               <a
                 href={"/how-it-works"}
-                className="w-[220px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300"
+                className="w-[220px] w-[250px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300"
               >
                 How SafariQ Works
               </a>
-              <button className="w-[220px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
+              <button className="w-[220px] w-[250px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
                 White Paper
               </button>
             </div>
