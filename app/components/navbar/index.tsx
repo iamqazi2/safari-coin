@@ -11,6 +11,7 @@ export const Navbar = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState<number>(0);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isInHeroSection, setIsInHeroSection] = useState<boolean>(true);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -29,6 +30,10 @@ export const Navbar = () => {
 
       // Set scrolled state for background color
       setIsScrolled(currentScrollY > 50);
+
+      // Check if we're still in hero section (assuming hero is viewport height)
+      const heroHeight = window.innerHeight;
+      setIsInHeroSection(currentScrollY < heroHeight);
 
       // Show navbar when scrolling up, hide when scrolling down
       if (currentScrollY < lastScrollY || currentScrollY <= 50) {
@@ -67,36 +72,46 @@ export const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-1/2 transform -translate-x-1/2 overflow-hidden z-50 max-w-[1240px] w-full mx-auto mt-6 rounded-full border border-white/30 backdrop-blur-sm transition-all duration-500 ease-in-out ${
+        className={`${
+          // Mobile: absolute positioning only in hero, Desktop: fixed
+          isInHeroSection
+            ? "fixed top-0 left-1/2 transform -translate-x-1/2"
+            : "lg:fixed lg:top-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 absolute top-0 left-1/2 transform -translate-x-1/2"
+        } overflow-hidden z-50 max-w-[1240px] w-full mx-auto mt-6 rounded-full border border-white/30 backdrop-blur-sm transition-all duration-500 ease-in-out ${
           isVisible ? "translate-y-0" : "-translate-y-full opacity-0"
-        } ${isScrolled ? "bg-black/40" : "bg-white/10"}`}
+        } ${
+          // Mobile: black background, Desktop: original background behavior
+          isScrolled
+            ? "bg-black/80 lg:bg-black/40"
+            : "bg-black/80 lg:bg-white/10"
+        }`}
       >
         <div className="px-4">
-          <div className="flex justify-between items-center  h-14 md:h-[66px]">
+          <div className="flex justify-between items-center h-11 md:h-[66px]">
             <Link href={"/"}>
               <Image
-                className="absolute -left-30 top-0 "
+                className="absolute -left-30 top-0"
                 src={"/nav-blur.svg"}
                 height={200}
                 width={440}
                 alt="logo"
               />
               <Image
-                className="absolute -left-30 top-0 "
+                className="absolute -left-30 top-0"
                 src={"/nav-blur.svg"}
                 height={200}
                 width={440}
                 alt="logo"
-              />{" "}
+              />
               <Image
-                className="absolute -left-30 top-0 "
+                className="absolute -left-30 top-0"
                 src={"/nav-blur.svg"}
                 height={200}
                 width={440}
                 alt="logo"
               />
               <div className="flex-shrink-0 relative z-10">
-                <Image src={"/logo.svg"} height={56} width={110} alt="logo" />
+                <Image src={"/logo.svg"} className="md:h-[56px] md:w-[110px] h-[40px] w-[80px]" height={56} width={110} alt="logo" />
               </div>
             </Link>
 
@@ -126,7 +141,7 @@ export const Navbar = () => {
 
             {/* Sign In Button (Desktop) */}
             <div className="hidden lg:block">
-              <button className="bg-[#00A8C5] hover:bg-white hover:text-black text-white px-6 py-2 rounded-full cursor-pointer font-[600] h-[44px] ">
+              <button className="bg-[#00A8C5] hover:bg-white hover:text-black text-white px-6 py-2 rounded-full cursor-pointer font-[600] h-[44px]">
                 Sign In
               </button>
             </div>
@@ -164,11 +179,11 @@ export const Navbar = () => {
             isDrawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="flex items-center justify-between p-4 ">
+          <div className="flex items-center justify-between p-4">
             <div className="flex items-center space-x-2">
               <Link href={"/"}>
                 <Image
-                  className="absolute left-0 bottom-0 top-0 "
+                  className="absolute left-0 bottom-0 top-0"
                   src={"/nav-blur.svg"}
                   height={220}
                   width={240}
@@ -203,6 +218,7 @@ export const Navbar = () => {
                   key={index}
                   href={item.href}
                   className="block text-gray-300 hover:text-white transition-colors duration-300 font-medium text-lg"
+                  onClick={() => setIsDrawerOpen(false)}
                 >
                   {item.name}
                 </Link>
