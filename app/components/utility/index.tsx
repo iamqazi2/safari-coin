@@ -50,42 +50,43 @@ const TravelTokensSection = () => {
     <div
       ref={sectionRef}
       id="web3"
-      className="min-h-screen py-8 md:py-14 bg-black text-white relative overflow-hidden"
+      className=" py-1 md:py-14 bg-black text-white relative overflow-hidden"
     >
       {/* Background Images */}
-      <Image
+      {/* <Image
         src={"/utility-texture.svg"}
         alt="texture"
         width={500}
         height={60}
-        className="absolute z-10 w-full -top-2 md:-top-3 lg:-top-9"
-      />
+        className="absolute z-50 w-full top-0 md:-top-3 lg:-top-9"
+        style={{ zIndex: 100 }}
+      /> */}
       <Image
         src={"/glow.svg"}
         alt="glow"
         width={500}
         height={340}
-        className="absolute -bottom-20 md:-bottom-40 -left-140 lg:-bottom-70 z-0 w-full h-full opacity-50 md:opacity-100"
+        className="absolute -bottom-10 sm:-bottom-20 md:-bottom-40 -left-140 lg:-bottom-70 z-0 w-full h-full opacity-30 sm:opacity-50 md:opacity-100"
       />
       <Image
         src={"/white-start.svg"}
         alt="star"
         width={100}
         height={240}
-        className="absolute bottom-4 md:bottom-8 hidden lg:block z-0 left-4 md:left-14 w-12 md:w-20 lg:w-auto"
+        className="absolute bottom-2 sm:bottom-4 md:bottom-8 hidden lg:block z-0 left-2 sm:left-4 md:left-14 w-8 sm:w-12 md:w-20 lg:w-auto"
       />
 
       {/* Title */}
-      <h1 className="text-[18px] sm:text-[24px] md:text-[36px] lg:text-[48px] pb-8 md:pb-16 lg:pb-28 text-white leading-tight text-center mx-auto font-[400] max-w-[750px] px-4">
+      <h1 className="text-[28px] md:text-2xl pt-[30px] md:pt-0 lg:text-3xl xl:text-5xl pb-6 sm:pb-8 md:pb-16 lg:pb-28 text-white leading-tight text-center mx-auto font-normal max-w-[750px] px-3 sm:px-4">
         Own Your Travel, With SED Tokens, NFTs, and Real Utility
       </h1>
 
       {/* Cards Container */}
-      <div className="px-4 lg:px-4 max-w-[1240px] mx-auto space-y-8 md:space-y-12 relative z-20">
+      <div className="px-3 sm:px-4 lg:px-4 max-w-[1240px] mx-auto space-y-6 sm:space-y-8 md:space-y-12 relative z-20">
         {cardData.map((card, index) => (
-          <div key={index} className="flex  justify-center m-0 h-fit relative">
+          <div key={index} className="flex justify-center m-0 h-fit relative">
             {/* Card Container */}
-            <div className="relative w-full max-w-[1046px]  min-h-[420px] md:min-h-[640px] lg:min-h-[461px] overflow-hidden">
+            <div className="relative w-full max-w-[1046px] min-h-[300px] sm:min-h-[350px] md:min-h-[420px] lg:min-h-[461px] overflow-hidden">
               {/* Background SVG - Rotated for second card */}
               <div
                 className={`${
@@ -132,33 +133,35 @@ const CardContent: React.FC<CardContentProps & { cardIndex?: number }> = ({
   // First card layout (index 0) - Image on right, text on left
   if (cardIndex === 0) {
     return (
-      <div className="relative w-full h-full py-4 md:py-6 lg:py-8 px-4 md:px-6 lg:px-8 xl:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2  lg:gap-6 items-start h-fit max-w-full">
+      <div className="relative w-full h-full py-3 sm:py-4 md:py-6 lg:py-8 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 items-center lg:items-start h-fit max-w-full">
           {/* Text content - left side on desktop, top on mobile */}
-          <div className="order-1 lg:order-1 space-y-2 md:space-y-3 lg:space-y-4 max-w-full overflow-hidden">
-            <h3 className="text-[14px] sm:text-[16px] md:text-[20px] lg:text-[24px] xl:text-[28px] text-[#00A8C5] font-medium leading-tight break-words">
+          <div className="order-1 lg:order-1 pt-[30px] md:pt-0 space-y-2 sm:space-y-3 lg:space-y-4 max-w-full overflow-hidden">
+            <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-[#00A8C5] font-medium leading-tight break-words">
               {title}
             </h3>
-            <p className="text-[11px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] text-white leading-relaxed break-words">
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white leading-relaxed break-words">
               {subtitle}
             </p>
 
             {prelaunch && (
-              <p className="text-[9px] sm:text-[10px] md:text-[12px] lg:text-[14px] xl:text-[16px] text-white break-words">
-                Prelaunch <span className="text-[#3EB9CF]">→ </span>
+              <p className="text-xs sm:text-sm md:text-base text-white break-words">
+                <span className="font-medium">Prelaunch</span>{" "}
+                <span className="text-[#3EB9CF]">→ </span>
                 {prelaunch}
               </p>
             )}
 
             {postlaunch && (
-              <p className="text-[9px] sm:text-[10px] md:text-[12px] lg:text-[14px] xl:text-[16px] text-white break-words">
-                Post Launch <span className="text-[#3EB9CF]">→ </span>
+              <p className="text-xs sm:text-sm md:text-base text-white break-words">
+                <span className="font-medium">Post Launch</span>{" "}
+                <span className="text-[#3EB9CF]">→ </span>
                 {postlaunch}
               </p>
             )}
 
             {points.length > 0 && (
-              <ul className="text-[8px] sm:text-[9px] md:text-[11px] lg:text-[13px] xl:text-[15px] text-white space-y-1 list-disc list-inside">
+              <ul className="text-xs sm:text-sm md:text-base text-white space-y-1 list-disc list-inside">
                 {points.map((point, i) => (
                   <li key={i} className="break-words">
                     {point}
@@ -169,11 +172,11 @@ const CardContent: React.FC<CardContentProps & { cardIndex?: number }> = ({
 
             {/* Buttons */}
             {buttons.length > 0 && (
-              <div className="flex flex-wrap gap-2 md:gap-3 mt-3 md:mt-4 lg:mt-6">
+              <div className="flex flex-wrap gap-2 md:gap-3 mt-3 sm:mt-4 lg:mt-6">
                 {buttons.map((btn, i) => (
                   <button
                     key={i}
-                    className={`px-3 sm:px-4 md:px-5 lg:px-6 py-2 md:py-3 text-[9px] sm:text-[10px] md:text-[11px] lg:text-[12px] text-white rounded-full transition whitespace-nowrap flex-shrink-0 ${
+                    className={`px-3 sm:px-4 md:px-5 lg:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm text-white rounded-full transition whitespace-nowrap flex-shrink-0 ${
                       btn.primary
                         ? "bg-[#3EB9CF] font-semibold hover:opacity-90"
                         : "bg-[#1A1B23] border border-white/30 hover:opacity-90"
@@ -187,14 +190,14 @@ const CardContent: React.FC<CardContentProps & { cardIndex?: number }> = ({
           </div>
 
           {/* Image - right side on desktop, bottom on mobile */}
-          <div className="order-2 lg:order-2 flex justify-center lg:justify-end items-center">
+          <div className="order-2 lg:order-2 hidden lg:block flex justify-center lg:justify-end items-center">
             {image && (
               <Image
                 src={image}
                 alt="card image"
                 width={400}
                 height={320}
-                className="w-[160px] sm:w-[200px] md:w-[260px] lg:w-[320px] xl:w-[400px] h-auto max-w-full flex-shrink-0"
+                className="w-32 sm:w-40 md:w-52 lg:w-72 xl:w-96 h-auto max-w-full flex-shrink-0"
               />
             )}
           </div>
@@ -205,46 +208,48 @@ const CardContent: React.FC<CardContentProps & { cardIndex?: number }> = ({
 
   // Second card layout (index 1) - Image on left, text on right
   return (
-    <div className="relative w-full h-full py-4 md:py-6 lg:pb-14 px-4 md:px-6 lg:px-8 xl:px-10">
-      <div className="grid grid-cols-1 lg:grid-cols-2  lg:gap-6 items-end h-full max-w-full">
+    <div className="relative w-full h-full py-3 sm:py-4 md:py-6 lg:pb-14 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 items-center lg:items-end h-full max-w-full">
         {/* Image - left side on desktop, top on mobile */}
-        <div className="order-1 lg:order-1 flex justify-center lg:justify-start items-center">
+        <div className="order-1 lg:order-1 hidden lg:block flex justify-center lg:justify-start items-center">
           {image && (
             <Image
               src={image}
               alt="card image"
               width={400}
               height={320}
-              className="w-[160px] sm:w-[200px] md:w-[260px] lg:w-[320px] xl:w-[400px] h-auto max-w-full flex-shrink-0"
+              className="w-32 sm:w-40 md:w-52 lg:w-72 xl:w-96 h-auto max-w-full flex-shrink-0"
             />
           )}
         </div>
 
         {/* Text content - right side on desktop, bottom on mobile */}
-        <div className="order-2 lg:order-2 space-y-2 md:space-y-3 lg:space-y-4 max-w-full overflow-hidden">
-          <h3 className="text-[14px] sm:text-[16px] md:text-[20px] lg:text-[24px] xl:text-[28px] text-[#00A8C5] font-medium leading-tight break-words">
+        <div className="order-2 pt-[40px] md:pt-0 lg:order-2 space-y-2 sm:space-y-3 lg:space-y-4 max-w-full overflow-hidden">
+          <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-[#00A8C5] font-medium leading-tight break-words">
             {title}
           </h3>
-          <p className="text-[11px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] text-white leading-relaxed break-words">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white leading-relaxed break-words">
             {subtitle}
           </p>
 
           {prelaunch && (
-            <p className="text-[9px] sm:text-[10px] md:text-[12px] lg:text-[14px] xl:text-[16px] text-white break-words">
-              Prelaunch <span className="text-[#3EB9CF]">→ </span>
+            <p className="text-xs sm:text-sm md:text-base text-white break-words">
+              <span className="font-medium">Prelaunch</span>{" "}
+              <span className="text-[#3EB9CF]">→ </span>
               {prelaunch}
             </p>
           )}
 
           {postlaunch && (
-            <p className="text-[9px] sm:text-[10px] md:text-[12px] lg:text-[14px] xl:text-[16px] text-white break-words">
-              Post Launch <span className="text-[#3EB9CF]">→ </span>
+            <p className="text-xs sm:text-sm md:text-base text-white break-words">
+              <span className="font-medium">Post Launch</span>{" "}
+              <span className="text-[#3EB9CF]">→ </span>
               {postlaunch}
             </p>
           )}
 
           {points.length > 0 && (
-            <ul className="text-[8px] sm:text-[9px] md:text-[11px] lg:text-[13px] xl:text-[15px] text-white space-y-1 list-disc list-inside">
+            <ul className="text-xs sm:text-sm md:text-base text-white space-y-1 list-disc list-inside">
               {points.map((point, i) => (
                 <li key={i} className="break-words">
                   {point}
@@ -255,11 +260,11 @@ const CardContent: React.FC<CardContentProps & { cardIndex?: number }> = ({
 
           {/* Buttons */}
           {buttons.length > 0 && (
-            <div className="flex flex-wrap gap-2 md:gap-3 mt-3 md:mt-4 lg:mt-6">
+            <div className="flex flex-wrap gap-2 md:gap-3 mt-3 sm:mt-4 lg:mt-6">
               {buttons.map((btn, i) => (
                 <button
                   key={i}
-                  className={`px-3 sm:px-4 md:px-5 lg:px-6 py-2 md:py-3 text-[9px] sm:text-[10px] md:text-[11px] lg:text-[12px] text-white rounded-full transition whitespace-nowrap flex-shrink-0 ${
+                  className={`px-3 sm:px-4 md:px-5 lg:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm text-white rounded-full transition whitespace-nowrap flex-shrink-0 ${
                     btn.primary
                       ? "bg-[#3EB9CF] font-semibold hover:opacity-90"
                       : "bg-[#1A1B23] border border-white/30 hover:opacity-90"

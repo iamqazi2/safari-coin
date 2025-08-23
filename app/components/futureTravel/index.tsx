@@ -176,6 +176,15 @@ const SafariQTravelSection: React.FC = () => {
       id="ecosystem"
       className="relative min-h-screen bg-white overflow-visible py-[100px]"
     >
+      {/* Background Images */}
+      <Image
+        src={"/utility-texture.svg"}
+        alt="texture"
+        width={500}
+        height={60}
+        className="absolute z-50 w-full bottom-0 md:-bottom-3 lg:-bottom-6"
+        style={{ zIndex: 100 }}
+      />
       <div className="flex justify-center items-center  w-full">
         <Image
           src={"/sec-icons.svg"}
@@ -185,7 +194,7 @@ const SafariQTravelSection: React.FC = () => {
         />
       </div>
       {/* Main Content */}
-      <div className="max-w-[1240px] relative py-8 mx-auto px-4">
+      <div className=" relative py-8 mx-auto px-4 lg:px-0">
         <Image
           src={"/black-stars.svg"}
           height={137}
