@@ -9,6 +9,8 @@ import TravelRoadmap from "./components/roadmap";
 import TravelTokensSection from "./components/utility";
 import DualVideoSection from "./components/videosection";
 import LoadingScreen from "./components/loader";
+import FoundationBrickSection from "./components/Foundation";
+import SEDNFTsSection from "./components/Power";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,7 +32,9 @@ const App = () => {
           <HeroSectionMain />
           <SafariQTravelSection />
           <TravelTokensSection />
+          <FoundationBrickSection />
           <NFTCardsSlider />
+          <SEDNFTsSection />
           <TravelSignupSection />
           <TravelRoadmap />
           <DualVideoSection />
