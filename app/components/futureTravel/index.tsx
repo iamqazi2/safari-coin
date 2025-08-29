@@ -42,7 +42,7 @@ const SafariQTravelSection: React.FC = () => {
     { name: "int14", image: "/int14.svg", color: "text-gray-500" },
   ];
 
-  // 20 service cards data sorted to match the screenshot order
+  // 21 service cards data sorted to match the screenshot order
   const serviceCards: ServiceCard[] = [
     { id: 1, title: "Next-GEN Journey Planner", image: "/gen.svg" },
     { id: 2, title: "Visa Assistance", image: "/visa.svg" },
@@ -256,15 +256,20 @@ const SafariQTravelSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Service Cards Section - Now shows desktop cards on both desktop and mobile */}
+        {/* Service Cards Section */}
         <div
           ref={cardsGridRef}
           className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 max-w-6xl mx-auto"
         >
-          {serviceCards.map((card) => (
+          {serviceCards.map((card, index) => (
             <div
               key={card.id}
-              className="service-card group cursor-pointer transform transition-all rounded-[18px] md:rounded-[28px] duration-300 hover:scale-105 hover:shadow-2xl"
+              className={`service-card group cursor-pointer transform transition-all rounded-[18px] md:rounded-[28px] duration-300 hover:scale-105 hover:shadow-2xl ${
+                // Make last card full width on small/medium screens but not on large screens
+                index === serviceCards.length - 1
+                  ? "col-span-2 lg:col-span-1"
+                  : ""
+              }`}
             >
               <div
                 className="relative rounded-[18px] md:rounded-[28px] backdrop-blur-sm p-3 md:p-6 h-full group-hover:bg-transparent shadow-[0_3px_0_0_#5DE7FF] md:shadow-[0_6px_0_0_#5DE7FF] group-hover:border-1 group-hover:border-[#4CD9ED] group-hover:shadow-[0_3px_0_0_#5DE7FF] md:group-hover:shadow-[0_6px_0_0_#5DE7FF]"
