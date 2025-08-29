@@ -72,6 +72,11 @@ const SafariQTravelSection: React.FC = () => {
     { id: 18, title: "SafariQ Metaverse", image: "/meta.svg" },
     { id: 19, title: "NFT Souvenirs", image: "/NFT.svg" },
     { id: 20, title: "AR Story Routes", image: "/ar-story.svg" },
+    {
+      id: 21,
+      title: "Nomadia ( Social Layer of SafariQ )",
+      image: "/nomadia.svg",
+    },
   ];
 
   useEffect(() => {
@@ -174,17 +179,10 @@ const SafariQTravelSection: React.FC = () => {
     <div
       ref={sectionRef}
       id="ecosystem"
-      className="relative min-h-screen bg-white overflow-visible py-[100px]"
+      className="relative min-h-screen bg-white  py-[100px]"
     >
       {/* Background Images */}
-      <Image
-        src={"/utility-texture.svg"}
-        alt="texture"
-        width={500}
-        height={60}
-        className="absolute z-50 w-full bottom-0 md:-bottom-3 lg:-bottom-6"
-        style={{ zIndex: 100 }}
-      />
+      {/*  */}
       <div className="flex justify-center items-center  w-full">
         <Image
           src={"/sec-icons.svg"}
@@ -193,6 +191,13 @@ const SafariQTravelSection: React.FC = () => {
           alt="section icons"
         />
       </div>
+      <Image
+        src={"/utility-texture.svg"}
+        alt="texture"
+        width={500}
+        height={60}
+        className="absolute  w-full bottom-0 md:-bottom-3 lg:-bottom-6"
+      />
       {/* Main Content */}
       <div className=" relative py-8 mx-auto px-4 lg:px-0">
         <Image

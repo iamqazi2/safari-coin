@@ -12,7 +12,7 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 // Hero Section Component
 export const HeroSectionMain = () => {
   return (
-    <div className="relative min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-120px)] px-2 bg-black overflow-hidden">
+    <div className="relative min-h-[calc(100vh-0px)] md:min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-120px)] px-2 bg-black overflow-hidden">
       <Image
         src={"/bg.png"}
         width={1920}
@@ -29,14 +29,14 @@ export const HeroSectionMain = () => {
       <Lines />
       <Navbar />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-2 lg:px-8 pt-[100px] md:pt-[120px] lg:pt-[120px] md:min-h-screen">
+      <div className="relative z-10 max-w-7xl mx-auto px-2 lg:px-8 pt-[200px] md:pt-[120px] lg:pt-[120px] md:min-h-screen">
         <div className="text-center  gap-2 flex flex-col justify-between pb-4 sm:pb-6 md:pb-8">
           {/* Content Section */}
           <div className="flex-shrink-0">
             {/* Main Heading */}
             <h1 className="text-[16px] sm:text-[28px] md:text-[36px] lg:text-[40px] max-w-[888px] mx-auto font-[400] text-white leading-tight sm:leading-normal mb-3 sm:mb-4">
-              Travel is Broken. We&apos;re Fixing It - With Web3 + <br />
-              Patent-Ready AI.
+              Travel is Broken. We&apos;re Fixing It - <br />
+              With Web3 + Patent-Ready AI.
             </h1>
 
             {/* Subtitle */}
@@ -49,16 +49,16 @@ export const HeroSectionMain = () => {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-2 md:gap-4 justify-center items-center mb-4 sm:mb-6 md:mb-8">
-              <button className="w-[220px] w-[250px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
+              <button className="w-[200px] md:w-[250px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
                 Join the Journey
               </button>
               <a
                 href={"/how-it-works"}
-                className="w-[220px] w-[250px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300"
+                className="w-[200px] md:w-[250px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300"
               >
                 How SafariQ Works
               </a>
-              <button className="w-[220px] w-[250px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
+              <button className="w-[200px] md:w-[250px] border-1 hover:bg-[#00A8C5] border-[#00A8C5] bg-black text-white px-[24px] sm:px-[30px] py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300">
                 White Paper
               </button>
             </div>

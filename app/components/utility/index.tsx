@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import SafariQTokenomics from "../piechart";
 
 const SafariQSection: React.FC = () => {
   return (
@@ -110,14 +111,8 @@ const SafariQSection: React.FC = () => {
           </div>
 
           {/* Right Content - Coins Image */}
-          <div className="relative h-96 md:h-[500px] lg:h-[500px] xl:h-[400px] lg:col-span-1">
-            <Image
-              src={"/coins_img.svg"}
-              alt="SafariQ Engagement Dirham Coins"
-              fill
-              className="object-contain"
-              priority
-            />
+          <div className="relative  lg:col-span-1">
+            <SafariQTokenomics />
           </div>
         </div>
       </div>

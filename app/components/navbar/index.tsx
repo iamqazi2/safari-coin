@@ -77,7 +77,7 @@ export const Navbar = () => {
           isInHeroSection
             ? "fixed top-0 left-1/2 transform -translate-x-1/2"
             : "lg:fixed lg:top-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 absolute top-0 left-1/2 transform -translate-x-1/2"
-        } overflow-hidden z-50 max-w-[1240px] w-full mx-auto mt-6 rounded-full border border-white/30 backdrop-blur-sm transition-all duration-500 ease-in-out ${
+        } overflow-hidden z-60 max-w-[1240px] w-full mx-auto mt-6 rounded-full border border-white/30 backdrop-blur-sm transition-all duration-500 ease-in-out ${
           isVisible ? "translate-y-0" : "-translate-y-full opacity-0"
         } ${
           // Mobile: black background, Desktop: original background behavior
