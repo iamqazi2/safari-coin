@@ -12,7 +12,7 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 // Hero Section Component
 export const HeroSectionMain = () => {
   return (
-    <div className="relative min-h-[calc(100vh-0px)] md:min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-120px)] px-2 bg-black overflow-hidden">
+    <div className="relative min-h-[calc(100vh-20px)] md:min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-120px)] px-2 bg-black overflow-hidden">
       <Image
         src={"/bg.png"}
         width={1920}
@@ -34,13 +34,13 @@ export const HeroSectionMain = () => {
           {/* Content Section */}
           <div className="flex-shrink-0">
             {/* Main Heading */}
-            <h1 className="text-[16px] sm:text-[28px] md:text-[36px] lg:text-[40px] max-w-[888px] mx-auto font-[400] text-white leading-tight sm:leading-normal mb-3 sm:mb-4">
+            <h1 className="text-[24px]  md:text-[36px] lg:text-[40px] max-w-[888px] mx-auto font-[400] text-white leading-tight sm:leading-normal mb-3 sm:mb-4">
               Travel is Broken. We&apos;re Fixing It - <br />
               With Web3 + Patent-Ready AI.
             </h1>
 
             {/* Subtitle */}
-            <p className="text-[12px] sm:text-[16px] md:text-[20px] lg:text-[24px] text-white/80 max-w-[888px] mx-auto leading-relaxed mb-2">
+            <p className="text-[16px]  md:text-[20px] lg:text-[24px] text-white/80 max-w-[888px] mx-auto leading-normal mb-2">
               From scattered bookings to zero loyalty, the travel industry is
               fragmented. SafariQ is building a unified ecosystem powered by
               Web3 and a revolutionary AI core, bridging global services into
