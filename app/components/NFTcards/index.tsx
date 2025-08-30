@@ -27,15 +27,15 @@ const NFTCardsSlider: React.FC = () => {
 
   const cards: NFTCard[] = [
     {
-      id: 1,
-      name: "Genesis Brick",
+      id: 3,
+      name: "Meta Brick",
       price: "Standard Price 5$",
-      description: "Only 10 Grails will be minted randomly for Lucky Minters.",
-      reward:
-        "$10,000 Exclusive Buy-Back offer + SafariQ Metaverse + Standard utility.",
-      image: "/green.svg",
-      type: "GENESIS",
+      description: "Limited Supply, will be minted randomly.",
+      reward: "$55 Travel voucher + Standard utility.",
+      image: "/blue.svg",
+      type: "META",
     },
+
     {
       id: 2,
       name: "Neon Brick",
@@ -46,13 +46,14 @@ const NFTCardsSlider: React.FC = () => {
       type: "NEON",
     },
     {
-      id: 3,
-      name: "Meta Brick",
+      id: 1,
+      name: "Genesis Brick",
       price: "Standard Price 5$",
-      description: "Limited Supply, will be minted randomly.",
-      reward: "$55 Travel voucher + Standard utility.",
-      image: "/blue.svg",
-      type: "META",
+      description: "Only 10 Grails will be minted randomly for Lucky Minters.",
+      reward:
+        "$10,000 Exclusive Buy-Back offer + SafariQ Metaverse + Standard utility.",
+      image: "/green.svg",
+      type: "GENESIS",
     },
     {
       id: 4,

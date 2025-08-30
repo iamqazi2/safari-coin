@@ -22,7 +22,9 @@ const SafariQTravelSection: React.FC = () => {
   const cardsGridRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
 
-  const [isMobile, setIsMobile] = useState(false);
+  const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">(
+    "mobile"
+  );
 
   // Integration partners data
   const integrationPartners = [
@@ -81,7 +83,14 @@ const SafariQTravelSection: React.FC = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      const width = window.innerWidth;
+      if (width < 768) {
+        setScreenSize("mobile");
+      } else if (width < 1024) {
+        setScreenSize("tablet");
+      } else {
+        setScreenSize("desktop");
+      }
     };
 
     handleResize();
@@ -145,7 +154,12 @@ const SafariQTravelSection: React.FC = () => {
               scale: 1,
               duration: 0.6,
               ease: "back.out(1.2)",
-              delay: isMobile ? (index % 2) * 0.1 : (index % 3) * 0.1, // Stagger animation for cards in the same row
+              delay:
+                screenSize === "mobile"
+                  ? (index % 2) * 0.1
+                  : screenSize === "tablet"
+                  ? (index % 2) * 0.1
+                  : Math.floor(index / 3) * 0.1, // Stagger animation for cards in the same row
             });
           },
           onLeave: () => {
@@ -173,7 +187,7 @@ const SafariQTravelSection: React.FC = () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       bannerAnimation.kill();
     };
-  }, [isMobile, integrationPartners.length]);
+  }, [screenSize, integrationPartners.length]);
 
   return (
     <div
@@ -217,7 +231,7 @@ const SafariQTravelSection: React.FC = () => {
           </p>
           <p className="text-[14px] md:text-[24px] text-black font-normal leading-normal max-w-3xl mx-auto">
             SafariQ aims to bridge all major travel services into one
-            intelligent, reward-based platform.
+            intelligent, Web3 powered platform..
           </p>
         </div>
 

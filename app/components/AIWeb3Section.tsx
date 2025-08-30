@@ -24,14 +24,9 @@ const AIWeb3Section: React.FC = () => {
           {/* Content Boxes */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-7 lg:gap-8">
             {/* AI Integration Box */}
-            <div
-              className="rounded-2xl w-full max-w-[610px] mx-auto lg:mx-0"
-              style={{
-                boxShadow: "0px 2px 0px 0px #00A8C5",
-              }}
-            >
+            <div className="rounded-2xl w-full max-w-[610px] mx-auto lg:mx-0">
               <div
-                className="rounded-2xl w-full h-auto min-h-[300px] md:min-h-[350px] lg:h-[411px] mb-1 p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-2xl shadow-[0_3px_0_0_#4CD9ED] w-full h-auto min-h-[300px] md:min-h-[350px] lg:h-[411px] mb-1 p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
                   border: "1px solid #4CD9ED",
@@ -72,12 +67,10 @@ const AIWeb3Section: React.FC = () => {
             {/* Web3 Integration Box */}
             <div
               className="rounded-2xl w-full max-w-[610px] mx-auto lg:mx-0"
-              style={{
-                boxShadow: "0px 2px 0px 0px #00A8C5",
-              }}
+          
             >
               <div
-                className="rounded-2xl w-full h-auto min-h-[300px] md:min-h-[350px] lg:h-[411px] mb-1 p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
+                className="rounded-2xl  shadow-[0_3px_0_0_#4CD9ED] w-full h-auto min-h-[300px] md:min-h-[350px] lg:h-[411px] mb-1 p-4 md:p-5 lg:p-6 xl:p-8 transition-colors duration-300"
                 style={{
                   backdropFilter: "blur(56px)",
                   border: "1px solid #4CD9ED",

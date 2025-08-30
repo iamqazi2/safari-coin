@@ -71,7 +71,7 @@ const SEDNFTsSection: React.FC = () => {
               width={100}
               height={100}
               alt="power image"
-              className="w-full h-auto  animate-spin-slow max-w-full"
+              className="w-full h-auto   max-w-full"
             />
           </div>
         </div>

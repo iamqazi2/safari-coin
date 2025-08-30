@@ -136,17 +136,17 @@ const FoundationBrickSection: React.FC = () => {
               ref={counterRef}
               className="absolute bottom-20 right-10 
             text-white
-             py-4 px-8 rounded-[16px] w-[250px]
+             py-4 px-0 md:px-8 rounded-[16px] w-[120px] md:w-[250px]
               z-10
              border border-[rgba(255,255,255,0.13)]
              bg-[rgba(0,0,0,0.50)] backdrop-blur-[3.4px]
              transform transition-transform duration-300 hover:scale-105"
             >
               <div className="text-center">
-                <p className="text-white font-semibold text-[12px] md:text-[14px] mb-1">
+                <p className="text-white font-semibold text-[8px] md:text-[14px] mb-1">
                   Live Minting Counter
                 </p>
-                <div className="text-white font-bold text-[18px] md:text-[24px] leading-tight">
+                <div className="text-white font-bold text-[10px] md:text-[24px] leading-tight">
                   {currentCount.toLocaleString()} / 100000
                 </div>
                 <p className="text-white font-medium text-[10px] md:text-[12px] mt-1">
@@ -160,8 +160,8 @@ const FoundationBrickSection: React.FC = () => {
             </h2>
 
             <p className="text-white/80 text-[16px] md:text-[20px] leading-relaxed mb-4">
-              World&apos;s largest NTF collection in Paid, RWA and Business
-              Utility categories. Each Foundation Brick KEY NFT is a functional
+              World’s largest NTF collection in Paid, RWA and Business Utility
+              categories. Each Foundation Brick KEY NFT is like a functional
               certificate, your entry pass to the SafariQ reseller economy and
               future Metaverse.
             </p>
@@ -185,15 +185,15 @@ const FoundationBrickSection: React.FC = () => {
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-white/60 rounded-full mt-3 flex-shrink-0"></div>
                 <p className="text-white/80 text-[16px] md:text-[20px] leading-relaxed">
-                  Acts as a SafariQ Reseller Certificate (just like becoming an
-                  Amazon reseller).
+                  Acts like a SafariQ Reseller Certificate (just like becoming
+                  an Amazon reseller).
                 </p>
               </div>
 
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-white/60 rounded-full mt-3 flex-shrink-0"></div>
                 <p className="text-white/80 text-[16px] md:text-[20px] leading-relaxed">
-                  Unlocks reseller dashboards, bulk deals & commission earnings.
+                  Unlocks reseller dashboards, bulk deals & reward earnings.
                 </p>
               </div>
 
