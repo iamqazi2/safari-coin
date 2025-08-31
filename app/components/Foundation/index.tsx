@@ -10,55 +10,69 @@ const FoundationBrickSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLDivElement>(null);
   const [currentCount, setCurrentCount] = useState(0);
+  const animationRef = useRef<gsap.core.Tween | null>(null);
 
   useEffect(() => {
     if (!sectionRef.current || !counterRef.current) return;
 
-    // Refresh ScrollTrigger to recalculate positions
-    ScrollTrigger.refresh();
+    // Kill any existing animations and ScrollTriggers
+    if (animationRef.current) {
+      animationRef.current.kill();
+    }
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    // Create a proxy object to animate
-    const counterObj = { count: 0 };
+    // Wait for next frame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      // Refresh ScrollTrigger to recalculate positions
+      ScrollTrigger.refresh();
 
-    // Create the counter animation
-    const counterAnimation = gsap.fromTo(
-      counterObj, // Target object
-      { count: 0 }, // fromVars
-      {
-        count: 13101,
-        duration: 3,
-        ease: "power2.out",
-        onUpdate: () => {
-          setCurrentCount(Math.round(counterObj.count));
+      // Create a proxy object to animate
+      const counterObj = { count: 0 };
+
+      // Create the counter animation
+      const counterAnimation = gsap.fromTo(
+        counterObj, // Target object
+        { count: 0 }, // fromVars
+        {
+          count: 13101,
+          duration: 3,
+          ease: "power2.out",
+          onUpdate: () => {
+            setCurrentCount(Math.round(counterObj.count));
+          },
+          paused: true, // Start paused
+        }
+      );
+
+      // Store reference to animation
+      animationRef.current = counterAnimation;
+
+      // Create ScrollTrigger with mobile-optimized settings
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top 85%", // More generous trigger point for mobile
+        end: "bottom 20%",
+        refreshPriority: -1, // Lower priority for refresh calculations
+        invalidateOnRefresh: true, // Recalculate on window resize
+        onEnter: () => {
+          console.log("ScrollTrigger: onEnter fired"); // Debug log
+          counterAnimation.restart();
         },
-      }
-    );
-
-    // Pause the animation initially
-    counterAnimation.pause();
-
-    // Create ScrollTrigger with mobile-optimized settings
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top 85%", // More generous trigger point for mobile
-      end: "bottom 20%",
-      refreshPriority: -1, // Lower priority for refresh calculations
-      invalidateOnRefresh: true, // Recalculate on window resize
-      onEnter: () => {
-        counterAnimation.restart();
-      },
-      onLeave: () => {
-        // Optional: pause when leaving view from bottom
-      },
-      onEnterBack: () => {
-        counterAnimation.restart();
-      },
-      onLeaveBack: () => {
-        counterAnimation.pause();
-        setCurrentCount(0);
-      },
-      // Add markers for debugging (remove in production)
-      // markers: true,
+        onLeave: () => {
+          // Optional: pause when leaving view from bottom
+        },
+        onEnterBack: () => {
+          console.log("ScrollTrigger: onEnterBack fired"); // Debug log
+          counterAnimation.restart();
+        },
+        onLeaveBack: () => {
+          console.log("ScrollTrigger: onLeaveBack fired"); // Debug log
+          counterAnimation.pause();
+          setCurrentCount(0);
+        },
+        // Add markers for debugging (remove in production)
+        // markers: true,
+      });
     });
 
     // Handle window resize to refresh ScrollTrigger
@@ -72,11 +86,13 @@ const FoundationBrickSection: React.FC = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      counterAnimation.kill();
+      if (animationRef.current) {
+        animationRef.current.kill();
+      }
     };
   }, []);
 
-  // Alternative: Use Intersection Observer as fallback for mobile
+  // Intersection Observer as fallback
   useEffect(() => {
     if (!sectionRef.current || !counterRef.current) return;
 
@@ -84,9 +100,10 @@ const FoundationBrickSection: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            console.log("IntersectionObserver: Element is intersecting"); // Debug log
             // Fallback counter animation if GSAP fails
             const counterObj = { count: 0 };
-            gsap.to(counterObj, {
+            const fallbackAnimation = gsap.to(counterObj, {
               count: 13101,
               duration: 3,
               ease: "power2.out",
@@ -94,6 +111,9 @@ const FoundationBrickSection: React.FC = () => {
                 setCurrentCount(Math.round(counterObj.count));
               },
             });
+
+            // Store reference for cleanup
+            animationRef.current = fallbackAnimation;
           }
         });
       },
@@ -103,9 +123,8 @@ const FoundationBrickSection: React.FC = () => {
       }
     );
 
-    // Only use intersection observer on mobile as fallback
-    const isMobile = window.innerWidth < 768;
-    if (isMobile && sectionRef.current) {
+    // Use intersection observer as primary method, not just mobile fallback
+    if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
@@ -160,7 +179,7 @@ const FoundationBrickSection: React.FC = () => {
             </h2>
 
             <p className="text-white/80 text-[16px] md:text-[20px] leading-relaxed mb-4">
-              World’s largest NTF collection in Paid, RWA and Business Utility
+              World&apos;s largest NTF collection in Paid, RWA and Business Utility
               categories. Each Foundation Brick KEY NFT is like a functional
               certificate, your entry pass to the SafariQ reseller economy and
               future Metaverse.
