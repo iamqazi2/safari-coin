@@ -18,7 +18,7 @@ export const Navbar = () => {
   const navItems = [
     { name: "About Us", href: "/about-us" },
     { name: "Ecosystem", href: "#ecosystem" },
-    { name: "Web3", href: "#web3" },
+    { name: "How SsaraiQ Works", href: "/how-it-works" },
     { name: "Roadmap", href: "#roadmap" },
     { name: "Community", href: "#community" },
   ];
@@ -111,7 +111,13 @@ export const Navbar = () => {
                 alt="logo"
               />
               <div className="flex-shrink-0 relative z-10">
-                <Image src={"/logo.svg"} className="md:h-[56px] md:w-[110px] h-[40px] w-[80px]" height={56} width={110} alt="logo" />
+                <Image
+                  src={"/logo.svg"}
+                  className="md:h-[56px] md:w-[110px] h-[40px] w-[80px]"
+                  height={56}
+                  width={110}
+                  alt="logo"
+                />
               </div>
             </Link>
 

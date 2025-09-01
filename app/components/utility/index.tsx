@@ -4,7 +4,7 @@ import SafariQTokenomics from "../piechart";
 
 const SafariQSection: React.FC = () => {
   return (
-    <section className="relative bg-black p-4 md:p-8 lg:p-12 overflow-hidden">
+    <section id="web3" className="relative bg-black p-4 md:p-8 lg:p-12 overflow-hidden">
       <Image
         src={"/glow.svg"}
         alt="glow"

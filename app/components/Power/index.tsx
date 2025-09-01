@@ -1,5 +1,7 @@
 import Image from "next/image";
 import React from "react";
+import Lottie from "lottie-react";
+import animationData from "../../../public/IAnim.json";
 
 const SEDNFTsSection: React.FC = () => {
   return (
@@ -64,14 +66,13 @@ const SEDNFTsSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Content - Rotating Image */}
+          {/* Right Content - Lottie Animation */}
           <div className="relative flex justify-between overflow-hidden h-[350px] lg:h-[450px] xl:h-[610px] ">
-            <Image
-              src={"/power.svg"}
-              width={100}
-              height={100}
-              alt="power image"
-              className="w-full h-auto   max-w-full"
+            <Lottie
+              animationData={animationData}
+              loop={true}
+              autoplay={true}
+              style={{ width: "100%", height: "auto", maxWidth: "100%" }}
             />
           </div>
         </div>

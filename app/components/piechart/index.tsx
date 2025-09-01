@@ -45,9 +45,9 @@ const SafariQTokenomicsChart = () => {
       ],
       values: [1100, 380, 160, 140, 120, 100],
       colors: [
-        "#06b6d4",
-        "#1e40af",
         "#059669",
+        "#1e40af",
+        "#06b6d4",
         "#d97706",
         "#7c3aed",
         "#dc2626",
@@ -68,7 +68,7 @@ const SafariQTokenomicsChart = () => {
         "NFT Rewards",
         "Loyalty & Campaign Incentives",
         "Reserved",
-        "Travel-to-earn Rewards (Users+Resellers)",
+        "Travel-to-Earn (Users+Resellers)",
       ],
       values: [3, 7, 55, 20, 15, 1000],
       colors: [
@@ -139,7 +139,6 @@ const SafariQTokenomicsChart = () => {
           display: false,
         },
         tooltip: {
-          // ❌ Removed `maxWidth` (not part of TS typings)
           position: "nearest",
           xAlign: "center",
           yAlign: "top",
@@ -168,7 +167,6 @@ const SafariQTokenomicsChart = () => {
                 const unlockingDetail =
                   tokenomicsData.inner.unlockingDetails[ctx.dataIndex];
 
-                // Typed properly
                 const wrapText = (text: string, maxLength = 40): string[] => {
                   if (text.length <= maxLength) return [text];
                   const words: string[] = text.split(" ");
@@ -301,8 +299,16 @@ const SafariQTokenomicsChart = () => {
                     backgroundColor: tokenomicsData.outer.colors[index],
                   }}
                 ></div>
+                {index === tokenomicsData.outer.labels.length - 1 ? (
+                  <div className="flex flex-col">
+                    <span>Travel-to-Earn</span>
+                    <span>(Users+Resellers)</span>
+                  </div>
+                ) : (
+                  <span>{label}</span>
+                )}
                 <span>
-                  {label}: {tokenomicsData.outer.values[index]}M (
+                  : {tokenomicsData.outer.values[index]}M (
                   {(
                     (tokenomicsData.outer.values[index] / totalCommunity) *
                     100

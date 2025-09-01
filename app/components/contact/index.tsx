@@ -58,7 +58,7 @@ const TravelSignupSection: React.FC = () => {
   };
 
   return (
-    <div className="relative overflow-hidden">
+    <div id="contact" className="relative overflow-hidden">
       <div className="min-h-screen bg-black p-6 flex relative items-center justify-center">
         <Image
           src={"/blurbg.svg"}
@@ -93,7 +93,7 @@ const TravelSignupSection: React.FC = () => {
                   <h1 className="text-4xl lg:text-5xl font-[400] text-white mb-4 leading-tight">
                     Join early, Invite Friends
                   </h1>
-                  <p className="text-xl text-gray-300 font-light">
+                  <p className="text-[18px] md:text-xl text-gray-300 font-light">
                     Earn SED Tokens & travel rewards.
                   </p>
                 </div>

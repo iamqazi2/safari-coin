@@ -25,6 +25,7 @@ const SafariQTravelSection: React.FC = () => {
   const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">(
     "mobile"
   );
+  const [animationsInitialized, setAnimationsInitialized] = useState(false);
 
   // Integration partners data
   const integrationPartners = [
@@ -100,104 +101,130 @@ const SafariQTravelSection: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!sectionRef.current || !bannerRef.current) return;
+    if (!sectionRef.current || !bannerRef.current || !cardsGridRef.current)
+      return;
 
-    // Calculate total width of banners (14 banners + 14 duplicated banners)
-    const bannerCount = integrationPartners.length; // 14
-    const totalBanners = bannerCount * 2; // 28 (including duplicated set)
-    const bannerWidth = 260; // Fixed width of each banner (as defined in w-[260px])
-    const gap = 24; // Approximate gap (space-x-6 is ~24px in Tailwind)
-    const totalWidth = totalBanners * (bannerWidth + gap) - gap; // Total width of all banners
+    // Clear any existing ScrollTriggers
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    // Banner sliding animation
-    const bannerAnimation = gsap.to(bannerRef.current, {
-      x: -totalWidth / 2, // Move by half the total width to show all banners
-      duration: 50,
-      ease: "none",
-      repeat: -1, // Infinite loop
-      onStart: () => {
-        // Ensure the banner starts at the beginning
-        gsap.set(bannerRef.current, { x: 0 });
-      },
-    });
+    // Wait for next frame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      // Animate scroll indicator
+      if (indicatorRef.current) {
+        gsap.to(indicatorRef.current, {
+          x: 10,
+          duration: 1.5,
+          ease: "power2.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
+      }
 
-    // Animate scroll indicator
-    if (indicatorRef.current) {
-      gsap.to(indicatorRef.current, {
-        x: 10,
-        duration: 1.5,
-        ease: "power2.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-    }
+      // Grid card reveal animations - improved version
+      const cards = cardsGridRef.current?.querySelectorAll(".service-card");
 
-    if (cardsGridRef.current) {
-      // Grid card reveal animations for both desktop and mobile
-      const cards = cardsGridRef.current.querySelectorAll(".service-card");
-
-      cards.forEach((card, index) => {
-        gsap.set(card, {
+      if (cards && cards.length > 0) {
+        // Initialize all cards to be hidden
+        gsap.set(cards, {
           opacity: 0,
           y: 50,
           scale: 0.9,
         });
 
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top 95%",
-          end: "bottom 5%",
-          onEnter: () => {
-            gsap.to(card, {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.6,
-              ease: "back.out(1.2)",
-              delay:
-                screenSize === "mobile"
-                  ? (index % 2) * 0.1
-                  : screenSize === "tablet"
-                  ? (index % 2) * 0.1
-                  : Math.floor(index / 3) * 0.1, // Stagger animation for cards in the same row
-            });
-          },
-          onLeave: () => {
-            gsap.to(card, {
-              opacity: 0.3,
-              scale: 0.95,
-              duration: 0.3,
-              ease: "power2.out",
-            });
-          },
-          onEnterBack: () => {
-            gsap.to(card, {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.4,
-              ease: "power2.out",
-            });
-          },
+        cards.forEach((card, index) => {
+          // Calculate stagger delay based on screen size
+          const getStaggerDelay = () => {
+            switch (screenSize) {
+              case "mobile":
+                return (index % 2) * 0.1; // 2 columns on mobile
+              case "tablet":
+                return (index % 2) * 0.1; // 2 columns on tablet
+              case "desktop":
+                return (index % 3) * 0.1; // 3 columns on desktop
+              default:
+                return index * 0.05;
+            }
+          };
+
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 90%", // Start animation earlier
+            end: "bottom 10%",
+            markers: false, // Set to true for debugging
+            refreshPriority: -1, // Lower priority for better performance
+            onEnter: () => {
+              gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.2)",
+                delay: getStaggerDelay(),
+                overwrite: true, // Prevent conflicting animations
+              });
+            },
+            onLeave: () => {
+              gsap.to(card, {
+                opacity: 0.3,
+                scale: 0.95,
+                duration: 0.4,
+                ease: "power2.out",
+                overwrite: true,
+              });
+            },
+            onEnterBack: () => {
+              gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.5,
+                ease: "power2.out",
+                overwrite: true,
+              });
+            },
+            onLeaveBack: () => {
+              gsap.to(card, {
+                opacity: 0,
+                y: 50,
+                scale: 0.9,
+                duration: 0.4,
+                ease: "power2.in",
+                overwrite: true,
+              });
+            },
+          });
         });
-      });
-    }
+
+        // Refresh ScrollTrigger after initialization
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+          setAnimationsInitialized(true);
+        }, 100);
+      }
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      bannerAnimation.kill();
     };
-  }, [screenSize, integrationPartners.length]);
+  }, [screenSize, integrationPartners.length, animationsInitialized]);
+
+  // Force ScrollTrigger refresh on screen size change
+  useEffect(() => {
+    if (animationsInitialized) {
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 200);
+    }
+  }, [screenSize, animationsInitialized]);
 
   return (
     <div
       ref={sectionRef}
       id="ecosystem"
-      className="relative min-h-screen bg-white  py-[100px]"
+      className="relative min-h-screen bg-white py-[100px]"
     >
       {/* Background Images */}
-      {/*  */}
-      <div className="flex justify-center items-center  w-full">
+      <div className="flex justify-center items-center w-full">
         <Image
           src={"/sec-icons.svg"}
           height={137}
@@ -210,10 +237,11 @@ const SafariQTravelSection: React.FC = () => {
         alt="texture"
         width={500}
         height={60}
-        className="absolute  w-full bottom-0 md:-bottom-3 lg:-bottom-6"
+        className="absolute w-full bottom-0 md:-bottom-3 lg:-bottom-6"
       />
+
       {/* Main Content */}
-      <div className=" relative py-8 mx-auto px-4 lg:px-0">
+      <div className="relative py-8 mx-auto px-4 xl:px-0">
         <Image
           src={"/black-stars.svg"}
           height={137}
@@ -221,6 +249,7 @@ const SafariQTravelSection: React.FC = () => {
           alt="section icons"
           className="absolute left-0 hidden md:block"
         />
+
         {/* Heading */}
         <div className="text-center mb-[40px]">
           <h1 className="text-[30px] md:text-[48px] leading-normal mb-2 font-normal text-black">
@@ -284,6 +313,10 @@ const SafariQTravelSection: React.FC = () => {
                   ? "col-span-2 lg:col-span-1"
                   : ""
               }`}
+              style={{
+                // Start with opacity 1 and let GSAP handle the initial state
+                opacity: animationsInitialized ? undefined : 1,
+              }}
             >
               <div
                 className="relative rounded-[18px] md:rounded-[28px] backdrop-blur-sm p-3 md:p-6 h-full group-hover:bg-transparent shadow-[0_3px_0_0_#5DE7FF] md:shadow-[0_6px_0_0_#5DE7FF] group-hover:border-1 group-hover:border-[#4CD9ED] group-hover:shadow-[0_3px_0_0_#5DE7FF] md:group-hover:shadow-[0_6px_0_0_#5DE7FF]"

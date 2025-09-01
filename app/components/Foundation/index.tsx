@@ -155,20 +155,20 @@ const FoundationBrickSection: React.FC = () => {
               ref={counterRef}
               className="absolute bottom-20 right-10 
             text-white
-             py-4 px-0 md:px-8 rounded-[16px] w-[120px] md:w-[250px]
+             py-4 px-0 md:px-8 rounded-[16px] w-[120px] md:w-[180px]
               z-10
              border border-[rgba(255,255,255,0.13)]
              bg-[rgba(0,0,0,0.50)] backdrop-blur-[3.4px]
              transform transition-transform duration-300 hover:scale-105"
             >
               <div className="text-center">
-                <p className="text-white font-semibold text-[8px] md:text-[14px] mb-1">
+                <p className="text-white font-semibold text-[8px] md:text-[11px] mb-1">
                   Live Minting Counter
                 </p>
-                <div className="text-white font-bold text-[10px] md:text-[24px] leading-tight">
+                <div className="text-white font-bold text-[10px] md:text-[14px] leading-tight">
                   {currentCount.toLocaleString()} / 100000
                 </div>
-                <p className="text-white font-medium text-[10px] md:text-[12px] mt-1">
+                <p className="text-white font-medium text-[10px] md:text-[10px] mt-1">
                   Layer 1
                 </p>
               </div>
