@@ -69,7 +69,7 @@ const NFTCardsSlider: React.FC = () => {
       id: 5,
       name: "Quantum Brick",
       price: "Standard Price 5$",
-      description: "",
+      description: "Limited supply, will be minted randomly.",
       reward: "55 SED Tokens + Standard utility.",
       image: "/QuantumBrick.svg",
       type: "QUANTUM",

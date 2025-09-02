@@ -262,61 +262,101 @@ const SafariQTokenomicsChart = () => {
   }, []);
 
   return (
-    <div className="text-white flex flex-col items-center justify-center font-sans p-4">
-      <div className="rounded-2xl p-5 w-full max-w-[950px]">
+    <div className="text-white flex flex-col items-center justify-center font-sans md:p-4">
+      <div className="rounded-2xl md:p-5 w-full max-w-[950px]">
         <canvas
           ref={chartRef}
           className="w-full max-h-[520px]"
           id="tokenomicsChart"
         />
-        <div className="mt-6 text-xs space-y-3">
-          <div className="flex flex-wrap gap-2">
-            {tokenomicsData.inner.labels.map((label, index) => (
-              <div key={index} className="flex items-center gap-1">
-                <div
-                  className="w-2 h-2 rounded"
-                  style={{
-                    backgroundColor: tokenomicsData.inner.colors[index],
-                  }}
-                ></div>
-                <span>
-                  {label}: {tokenomicsData.inner.values[index]}M (
-                  {(
-                    (tokenomicsData.inner.values[index] / totalSupply) *
-                    100
-                  ).toFixed(2)}
-                  %)
-                </span>
-              </div>
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {tokenomicsData.outer.labels.map((label, index) => (
-              <div key={index} className="flex items-center gap-1">
-                <div
-                  className="w-2 h-2 rounded"
-                  style={{
-                    backgroundColor: tokenomicsData.outer.colors[index],
-                  }}
-                ></div>
-                {index === tokenomicsData.outer.labels.length - 1 ? (
-                  <div className="flex flex-col">
-                    <span>Travel-to-Earn</span>
-                    <span>(Users+Resellers)</span>
+        <div className="mt-6 space-y-3">
+          {/* Large screens: Show full legend */}
+          <div className="hidden lg:block">
+            <div className="text-xs space-y-3">
+              <div className="flex flex-wrap gap-2">
+                {tokenomicsData.inner.labels.map((label, index) => (
+                  <div key={index} className="flex items-center gap-1">
+                    <div
+                      className="w-2 h-2 rounded"
+                      style={{
+                        backgroundColor: tokenomicsData.inner.colors[index],
+                      }}
+                    ></div>
+                    <span>
+                      {label}: {tokenomicsData.inner.values[index]}M (
+                      {(
+                        (tokenomicsData.inner.values[index] / totalSupply) *
+                        100
+                      ).toFixed(2)}
+                      %)
+                    </span>
                   </div>
-                ) : (
-                  <span>{label}</span>
-                )}
-                <span>
-                  : {tokenomicsData.outer.values[index]}M (
-                  {(
-                    (tokenomicsData.outer.values[index] / totalCommunity) *
-                    100
-                  ).toFixed(2)}
-                  %)
-                </span>
+                ))}
               </div>
-            ))}
+              <div className="flex flex-wrap gap-2">
+                {tokenomicsData.outer.labels.map((label, index) => (
+                  <div key={index} className="flex items-center gap-1">
+                    <div
+                      className="w-2 h-2 rounded"
+                      style={{
+                        backgroundColor: tokenomicsData.outer.colors[index],
+                      }}
+                    ></div>
+                    {index === tokenomicsData.outer.labels.length - 1 ? (
+                      <div className="flex flex-col">
+                        <span>Travel-to-Earn</span>
+                        <span>(Users+Resellers)</span>
+                      </div>
+                    ) : (
+                      <span>{label}</span>
+                    )}
+                    <span>
+                      : {tokenomicsData.outer.values[index]}M (
+                      {(
+                        (tokenomicsData.outer.values[index] / totalCommunity) *
+                        100
+                      ).toFixed(2)}
+                      %)
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Small to medium screens: Simplified view */}
+          <div className="lg:hidden">
+            <div className="text-xs space-y-2">
+              <div className="text-center text-sm font-semibold mb-3">
+                Hover over chart sections for details
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {tokenomicsData.inner.labels.map((label, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-2 p-2 rounded "
+                  >
+                    <div
+                      className="w-3 h-3 rounded"
+                      style={{
+                        backgroundColor: tokenomicsData.inner.colors[index],
+                      }}
+                    ></div>
+                    <div className="flex-1">
+                      <div className="font-medium text-xs">{label}</div>
+                      <div className="text-xs text-gray-300">
+                        {tokenomicsData.inner.values[index]}M (
+                        {(
+                          (tokenomicsData.inner.values[index] / totalSupply) *
+                          100
+                        ).toFixed(1)}
+                        %)
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

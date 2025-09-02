@@ -109,6 +109,25 @@ const SafariQTravelSection: React.FC = () => {
 
     // Wait for next frame to ensure DOM is ready
     requestAnimationFrame(() => {
+      // Calculate total width of banners (14 banners + 14 duplicated banners)
+      const bannerCount = integrationPartners.length; // 14
+      const totalBanners = bannerCount * 2; // 28 (including duplicated set)
+      const bannerWidth = 260; // Fixed width of each banner (as defined in w-[260px])
+      const gap = 24; // Approximate gap (space-x-6 is ~24px in Tailwind)
+      const totalWidth = totalBanners * (bannerWidth + gap) - gap; // Total width of all banners
+
+      // Banner sliding animation
+      const bannerAnimation = gsap.to(bannerRef.current, {
+        x: -totalWidth / 2, // Move by half the total width to show all banners
+        duration: 50,
+        ease: "none",
+        repeat: -1, // Infinite loop
+        onStart: () => {
+          // Ensure the banner starts at the beginning
+          gsap.set(bannerRef.current, { x: 0 });
+        },
+      });
+
       // Animate scroll indicator
       if (indicatorRef.current) {
         gsap.to(indicatorRef.current, {
@@ -130,6 +149,9 @@ const SafariQTravelSection: React.FC = () => {
           y: 50,
           scale: 0.9,
         });
+
+        // Create a master timeline for better control
+        const masterTimeline = gsap.timeline({ paused: true });
 
         cards.forEach((card, index) => {
           // Calculate stagger delay based on screen size
@@ -241,7 +263,7 @@ const SafariQTravelSection: React.FC = () => {
       />
 
       {/* Main Content */}
-      <div className="relative py-8 mx-auto px-4 xl:px-0">
+      <div className="relative py-8 mx-auto px-4 lg:px-0">
         <Image
           src={"/black-stars.svg"}
           height={137}

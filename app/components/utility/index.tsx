@@ -26,7 +26,7 @@ const SafariQSection: React.FC = () => {
             rewards-driven, reseller-ready, and future-ready ecosystem.
           </p>
         </div>
-        <div className="grid grid-cols-1 shadow-[0_6px_0_0_#5DE7FF] border border-white/20 rounded-[16px] p-8 lg:grid-cols-3 gap-4 lg:gap-2 items-center ">
+        <div className="grid grid-cols-1 shadow-[0_6px_0_0_#5DE7FF] border border-white/20 rounded-[16px] p-3 md:p-8 lg:grid-cols-3 gap-4 lg:gap-2 items-center ">
           {/* Left Content */}
           <div className="space-y-6 md:space-y-8 lg:pr-8 lg:col-span-2">
             {/* Header */}
