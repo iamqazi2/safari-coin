@@ -332,27 +332,49 @@ const SafariQTokenomicsChart = () => {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {tokenomicsData.inner.labels.map((label, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-2 p-2 rounded "
-                  >
+                  <div key={index} className="flex items-center gap-1">
                     <div
-                      className="w-3 h-3 rounded"
+                      className="w-2 h-2 rounded"
                       style={{
                         backgroundColor: tokenomicsData.inner.colors[index],
                       }}
                     ></div>
-                    <div className="flex-1">
-                      <div className="font-medium text-xs">{label}</div>
-                      <div className="text-xs text-gray-300">
-                        {tokenomicsData.inner.values[index]}M (
-                        {(
-                          (tokenomicsData.inner.values[index] / totalSupply) *
-                          100
-                        ).toFixed(1)}
-                        %)
+                    <span className="text-[10px]">
+                      {label}: {tokenomicsData.inner.values[index]}M (
+                      {(
+                        (tokenomicsData.inner.values[index] / totalSupply) *
+                        100
+                      ).toFixed(2)}
+                      %)
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {tokenomicsData.outer.labels.map((label, index) => (
+                  <div key={index} className="flex items-center gap-1">
+                    <div
+                      className="w-2 h-2 rounded"
+                      style={{
+                        backgroundColor: tokenomicsData.outer.colors[index],
+                      }}
+                    ></div>
+                    {index === tokenomicsData.outer.labels.length - 1 ? (
+                      <div className="flex flex-col">
+                        <span className="text-[10px]">Travel-to-Earn</span>
+                        <span className="text-[10px]">(Users+Resellers)</span>
                       </div>
-                    </div>
+                    ) : (
+                      <span className="text-[10px]">{label}</span>
+                    )}
+                    <span className="text-[10px]">
+                      : {tokenomicsData.outer.values[index]}M (
+                      {(
+                        (tokenomicsData.outer.values[index] / totalCommunity) *
+                        100
+                      ).toFixed(2)}
+                      %)
+                    </span>
                   </div>
                 ))}
               </div>
