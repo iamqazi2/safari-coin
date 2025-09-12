@@ -147,9 +147,12 @@ export const Navbar = () => {
 
             {/* Sign In Button (Desktop) */}
             <div className="hidden lg:block">
-              <button className="bg-[#00A8C5] hover:bg-white hover:text-black text-white px-6 py-2 rounded-full cursor-pointer font-[600] h-[44px]">
+              <a
+                href="/Signin"
+                className="bg-[#00A8C5] hover:bg-white hover:text-black text-white px-6 py-2 rounded-full cursor-pointer font-[600] h-[44px]"
+              >
                 Sign In
-              </button>
+              </a>
             </div>
 
             {/* Mobile menu button */}
